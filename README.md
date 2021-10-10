@@ -1,11 +1,18 @@
 # My Personal Project
 
-## A subtitle
+## A budgeting app
+  
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+*Q: What will this app do?*  
+A: This app will help users keep track of their monthly expenses, categorize their spending, and calculate their
+net worth.  
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+*Q: Who will use this app?*  
+A: Budgeting can be very time-consuming and complicated, which results in many failing to stick to it long-term.
+This app is aimed for users who want a simple, yet effective way to track their spending.
+
+*Q: Why am I interested in this project?*  
+A: As a university student, I know how important it is to be able to manage my finances well. I hope that this app
+can help me apply what I've learned in class and integrate it into an app that will help me in real life. As mentioned
+above, I find that I tend to stop using budgeting apps like Mint because there are too many complicated features. I
+want to develop an app is intuitive and useful.
