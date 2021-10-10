@@ -16,3 +16,10 @@ A: As a university student, I know how important it is to be able to manage my f
 can help me apply what I've learned in class and integrate it into an app that will help me in real life. As mentioned
 above, I find that I tend to stop using budgeting apps like Mint because there are too many complicated features. I
 want to develop an app is intuitive and useful.
+
+##User stories
+1. As a user, I want to be able to add new expense entries to a list of existing expenses.
+2. As a user, I want to be able to view all my expenses during each selected month.
+3. As a user, I want to be able to view all my expenses that belong to a certain cateogry (e.g., restaurants, groceries)
+4. As a user, I want to be able to see how much money I have left to spend this month for a certain category.
+5. As a user, I want to be able to delete an entry from my list of expenses.
