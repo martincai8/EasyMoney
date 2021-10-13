@@ -22,5 +22,4 @@ want to develop an app is intuitive and useful.
 2. As a user, I want to be able to view all my expenses during each selected month.
 3. As a user, I want to be able to view all my expenses that belong to a certain category 
 (e.g., restaurants, groceries).
-4. As a user, I want to be able to see how much money I have left to spend this month for a certain category.
-5. As a user, I want to be able to delete an entry from my list of expenses.
+4. As a user, I want to be able to delete an entry from my list of expenses.
