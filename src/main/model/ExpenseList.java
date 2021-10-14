@@ -1,6 +1,7 @@
 package model;
 
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.*;
@@ -26,15 +27,39 @@ public class ExpenseList {
     }
 
     //REQUIRES: expenses isn't empty
-    //EFFECTS: returns all expenses from a specified integer month value
+    //EFFECTS: returns all expenses from a given integer month value
     public List<Expense> getExpensesFromMonth(int month) {
-        List<Expense> expenseMonth = new ArrayList<>();
+        List<Expense> expensesMonth = new ArrayList<>();
         for (Expense e : expenses) {
             if (e.getDate().getMonthValue() == month) {
-                expenseMonth.add(e);
+                expensesMonth.add(e);
             }
         }
-        return expenseMonth;
+        return expensesMonth;
+    }
+
+    //REQUIRES: expenses isn't empty
+    //EFFECTS: returns all expenses from a given category
+    public List<Expense> getExpensesFromCategory(String category) {
+        List<Expense> expensesCategory = new ArrayList<>();
+        for (Expense e : expenses) {
+            if (e.getCategory().equals(category)) {
+                expensesCategory.add(e);
+            }
+        }
+        return expensesCategory;
+    }
+
+    //REQUIRES: expenses is not empty
+    //MODIFIES: this
+    //EFFECTS: removes the expense with the given amount, category, and date from expenses
+    public void removeExpense(double amount, String category, LocalDateTime date) {
+        for (Expense e : expenses) {
+            if (e.getAmount() == amount && e.getCategory().equals(category) && e.getDate().equals(date)) {
+                expenses.remove(e);
+                break;
+            }
+        }
     }
 
     //EFFECTS: returns the number of expenses in the list

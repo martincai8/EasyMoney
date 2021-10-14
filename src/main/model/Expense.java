@@ -3,19 +3,20 @@ package model;
 import java.time.*;
 
 public class Expense {
-    private int amount;
+    private double amount;
     private String category;
     private LocalDateTime date;
 
-    public Expense(int amount, String category, LocalDateTime date) {
+    public Expense(double amount, String category, LocalDateTime date) {
         this.amount = amount;
         this.category = category;
         this.date = date;
     }
 
+    //REQUIRES: newAmount be a positive number
     //MODIFIES: this
     //EFFECTS: updates the dollar amount of the expense
-    public void setAmount(int newAmount) {
+    public void setAmount(double newAmount) {
         amount = newAmount;
     }
 
@@ -32,7 +33,7 @@ public class Expense {
     }
 
     //EFFECTS: returns amount
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -45,6 +46,4 @@ public class Expense {
     public LocalDateTime getDate() {
         return date;
     }
-
-
 }
