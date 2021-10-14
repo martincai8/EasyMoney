@@ -27,10 +27,6 @@ class ExpenseListTest {
 
     @Test
     public void testAddExpense() {
-//        Expense e1 = new Expense(100, "Groceries", LocalDateTime.of(2020, Month.OCTOBER,
-//                12, 9,10));
-//        Expense e2 = new Expense(59.5, "Shopping", LocalDateTime.of(2020, Month.OCTOBER,
-//                12, 9,10));
         expenses.addExpense(e1);
         expenses.addExpense(e2);
 
@@ -41,13 +37,6 @@ class ExpenseListTest {
 
     @Test
     public void getAllExpenses() {
-//        Expense e1 = new Expense(100, "Groceries", LocalDateTime.of(2020, Month.OCTOBER,
-//                12, 9,10));
-//        Expense e2 = new Expense(59.5, "Shopping", LocalDateTime.of(2020, Month.OCTOBER,
-//                12, 9,10));
-//        Expense e3 = new Expense(20, "Movies", LocalDateTime.of(2020, Month.JULY,
-//                12, 9,10));
-
         expenses.addExpense(e1);
         expenses.addExpense(e2);
         expenses.addExpense(e3);
@@ -63,12 +52,6 @@ class ExpenseListTest {
 
     @Test
     public void getAllExpensesFromMonthDoesNotExist() {
-//        Expense e1 = new Expense(100, "Groceries", LocalDateTime.of(2020, Month.OCTOBER,
-//                12, 9,10));
-//        Expense e2 = new Expense(59.5, "Shopping", LocalDateTime.of(2020, Month.OCTOBER,
-//                12, 9,10));
-//        Expense e3 = new Expense(20, "Movies", LocalDateTime.of(2020, Month.JULY,
-//                12, 9,10));
         expenses.addExpense(e1);
         expenses.addExpense(e2);
         expenses.addExpense(e3);
@@ -129,6 +112,8 @@ class ExpenseListTest {
         assertEquals(e2, expenses.getAllExpenses().get(0));
     }
 
+
+
     @Test
     public void testRemoveExpenseDoesNotExist() {
         expenses.addExpense(e1);
@@ -137,10 +122,18 @@ class ExpenseListTest {
 
         assertEquals(3, expenses.length());
 
+        expenses.removeExpense(10, "Groceries", LocalDateTime.of(2020, Month.OCTOBER,
+                12, 9,10));
+        assertEquals(3, expenses.length());
+
         expenses.removeExpense(100, "Shopping", LocalDateTime.of(2020, Month.OCTOBER,
                 12, 9,10));
-
         assertEquals(3, expenses.length());
+
+        expenses.removeExpense(100, "Groceries", LocalDateTime.of(2020, Month.OCTOBER,
+                11, 9,10));
+        assertEquals(3, expenses.length());
+
         assertEquals(e2, expenses.getAllExpenses().get(1));
     }
 
