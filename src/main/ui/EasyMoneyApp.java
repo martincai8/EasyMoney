@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 //EasyMoney application
-// This class references code from https://github.students.cs.ubc.ca/CPSC210/TellerApp
+//This class references code from https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class EasyMoneyApp {
     private ExpenseList expenseList;
     private Scanner input;
@@ -116,7 +116,7 @@ public class EasyMoneyApp {
             month = input.nextInt();
         }
         expenses = expenseList.getExpensesFromMonth(month);
-        System.out.println("Here are your expenses from " + month);
+        System.out.println("Here are your expenses from " + Month.of(month) + ":");
         displayExpenses(expenses);
     }
 
@@ -139,7 +139,7 @@ public class EasyMoneyApp {
         System.out.print("Enter the category that this expense belongs to: ");
         category = input.next();
 
-        System.out.print("Enter the date and time of this expense (e.g., \"09:30 Oct. 12, 2021\"): ");
+        System.out.print("Enter the date and time of this expense (e.g., \"09:30 Oct 12, 2021\"): ");
         dateStr = input.next();
         date = stringToDate(dateStr);
 
@@ -163,13 +163,13 @@ public class EasyMoneyApp {
         amount = input.nextDouble();
 
         System.out.print("Enter a short description of the expense (e.g., Superstore): ");
-        description = input.nextLine();
+        description = input.next();
 
         System.out.println("Enter the category that this expense belongs to (e.g., Groceries): ");
         category = input.next();
 
         System.out.println("Enter the date and time of this expense (e.g., \"09:30 Oct 12, 2021\"): ");
-        date = stringToDate(input.nextLine());
+        date = stringToDate(input.next());
 
         Expense target = new Expense(amount, description, category, date);
 

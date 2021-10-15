@@ -27,7 +27,7 @@ public class ExpenseList {
     }
 
     //REQUIRES: expenses isn't empty
-    //EFFECTS: returns all expenses from a given integer month value
+    //EFFECTS: returns all expenses from a given month
     public List<Expense> getExpensesFromMonth(int month) {
         List<Expense> expensesMonth = new ArrayList<>();
         for (Expense e : expenses) {
