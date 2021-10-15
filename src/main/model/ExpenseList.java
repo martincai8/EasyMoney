@@ -52,7 +52,7 @@ public class ExpenseList {
 
     //REQUIRES: expenses is not empty
     //MODIFIES: this
-    //EFFECTS: removes the expense with the given amount, category, and date from expenses
+    //EFFECTS: removes the expense with the matching amount, description, category, and date from expenses
     public void removeExpense(double amount, String description, String category, LocalDateTime date) {
         Expense target = new Expense(amount, description, category, date);
         for (Expense e : expenses) {
@@ -63,6 +63,7 @@ public class ExpenseList {
         }
     }
 
+    //EFFECTS: returns true if two Expense objects are identical (all field values are the same)
     public boolean checkEquals(Expense e1, Expense e2) {
         return (e1.getAmount().equals(e2.getAmount()))
                 && e1.getDescription().equals(e2.getDescription())

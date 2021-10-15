@@ -68,6 +68,7 @@ public class Expense {
         return date.format(format);
     }
 
+    //EFFECTS: formats the information from an Expense object into a String
     @Override
     public String toString() {
         return String.format("%-10.2f %-20s %-15s %s", amount, description, category, dateToString());
