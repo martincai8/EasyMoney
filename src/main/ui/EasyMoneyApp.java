@@ -18,6 +18,8 @@ public class EasyMoneyApp {
         runEasyMoney();
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user input
     private void runEasyMoney() {
         boolean keepGoing = true;
         String option;
@@ -42,11 +44,13 @@ public class EasyMoneyApp {
         }
     }
 
+    //EFFECTS: displays the welcome title
     private void displayWelcome() {
         System.out.println("Welcome to EasyMoney!");
         System.out.println("***********************");
     }
 
+    //EFFECTS: displays the menu options for the user to choose from
     private void displayMenu() {
         System.out.println("Please pick from one of the following options:");
         System.out.println("a -> view all expenses");
@@ -57,6 +61,8 @@ public class EasyMoneyApp {
         System.out.println("q -> quit");
     }
 
+    //MODIFIES: this
+    //EFFECTS: processes the user's selected option
     private void processOption(String opt) {
         String option = opt;
 
@@ -77,12 +83,14 @@ public class EasyMoneyApp {
         }
     }
 
+    //EFFECTS: displays all the user's logged expenses
     private void viewAllExpenses() {
         List<Expense> expenses = expenseList.getAllExpenses();
         System.out.println("Here are all your expenses:");
         displayExpenses(expenses);
     }
 
+    //EFFECTS: displays all the user's logged expenses from a specific category
     private void viewAllExpensesFromCategory() {
         String category;
         List<Expense> expenses;
@@ -94,6 +102,7 @@ public class EasyMoneyApp {
         displayExpenses(expenses);
     }
 
+    //EFFECTS: displays all the user's logged expenses from a specific month
     private void viewAllExpensesFromMonth() {
         int month;
         List<Expense> expenses;
@@ -110,6 +119,8 @@ public class EasyMoneyApp {
         displayExpenses(expenses);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a new expense to expenseList
     private void addNewExpense() {
         double amount;
         String description;
@@ -138,13 +149,14 @@ public class EasyMoneyApp {
         System.out.println("Successfully added!");
     }
 
+    //MODIFIES: this
+    //EFFECTS: deletes an existing expense to expenseList
     public void deleteExpense() {
         double amount;
         String description;
         String category;
 
         LocalDateTime date;
-
 
         System.out.print("Enter the dollar amount of the expense: $");
         amount = input.nextDouble();
@@ -165,23 +177,26 @@ public class EasyMoneyApp {
         System.out.println("Successfully deleted!");
     }
 
+    //EFFECTS: displays a given list of expenses
     private void displayExpenses(List<Expense> expenses) {
         if (expenses.size() == 0) {
             System.out.println("You don't have any expenses, add one!");
         } else {
+            System.out.printf("\n%-10s %-25s %-20s %s \n", "Amount", "Description", "Category", "Date");
             for (Expense e : expenses) {
                 System.out.println(e.toString());
             }
         }
     }
 
+    //EFFECTS: returns a LocalDateTime object parsed from a string
     public LocalDateTime stringToDate(String dateStr) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm MMM dd, yyyy");
         return LocalDateTime.parse(dateStr, format);
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes accounts
+    // EFFECTS: initializes expenseList and adds sample expenses
     private void init() {
         Expense e1 = new Expense(100, "T&T Supermarket", "Groceries",
                 LocalDateTime.of(2021, Month.JANUARY, 9, 20,15));
