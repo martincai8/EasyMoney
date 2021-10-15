@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 //EasyMoney application
+// This class references code from https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class EasyMoneyApp {
     private ExpenseList expenseList;
     private Scanner input;
