@@ -53,8 +53,7 @@ public class ExpenseList {
     //REQUIRES: expenses is not empty
     //MODIFIES: this
     //EFFECTS: removes the expense with the matching amount, description, category, and date from expenses
-    public void removeExpense(double amount, String description, String category, LocalDateTime date) {
-        Expense target = new Expense(amount, description, category, date);
+    public void removeExpense(Expense target) {
         for (Expense e : expenses) {
             if (checkEquals(e, target)) {
                 expenses.remove(e);

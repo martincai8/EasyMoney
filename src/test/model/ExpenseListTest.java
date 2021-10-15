@@ -17,8 +17,8 @@ class ExpenseListTest {
     @BeforeEach
     public void runBefore() {
         expenses = new ExpenseList();
-        e1 = new Expense(100, "T&T Supermarket", "Groceries", LocalDateTime.of(2020, Month.OCTOBER,
-                12, 9,10));
+        e1 = new Expense(100, "T&T Supermarket", "Groceries",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
         e2 = new Expense(59.5, "H&M", "Shopping", LocalDateTime.of(2020, Month.OCTOBER,
                 12, 9,10));
         e3 = new Expense(20, "Cineplex", "Movies", LocalDateTime.of(2020, Month.JULY,
@@ -129,8 +129,7 @@ class ExpenseListTest {
 
         assertEquals(3, expenses.length());
 
-        expenses.removeExpense(100, "T&T Supermarket", "Groceries",
-                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        expenses.removeExpense(e1);
 
         assertEquals(2, expenses.length());
         assertEquals(e2, expenses.getAllExpenses().get(0));
@@ -145,8 +144,8 @@ class ExpenseListTest {
 
         assertEquals(3, expenses.length());
 
-        expenses.removeExpense(10, "Superstore", "Groceries",
-                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        expenses.removeExpense(new Expense(10, "Superstore", "Groceries",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10)));
         assertEquals(3, expenses.length());
 
         assertEquals(e2, expenses.getAllExpenses().get(1));
