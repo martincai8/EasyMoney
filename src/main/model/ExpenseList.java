@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.*;
 
+//Represents a list of Expenses
 public class ExpenseList {
     private List<Expense> expenses;
 

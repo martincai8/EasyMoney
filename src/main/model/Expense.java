@@ -3,6 +3,7 @@ package model;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
+//Represents an expense with a dollar amount, description, category, and date
 public class Expense {
     private double amount;
     private String description;
