@@ -151,31 +151,26 @@ public class EasyMoneyApp {
     }
 
     //MODIFIES: this
-    //EFFECTS: deletes an existing expense to expenseList
+    //EFFECTS: deletes an existing expense from expenseList
     public void deleteExpense() {
-        double amount;
-        String description;
-        String category;
+        int month;
+        List<Expense> expenses;
+        int position;
+        Expense target;
 
-        LocalDateTime date;
+        System.out.print("Enter the month that this expense is from (1-12): ");
+        month = input.nextInt();
 
-        System.out.print("Enter the dollar amount of the expense: $");
-        amount = input.nextDouble();
+        expenses = expenseList.getExpensesFromMonth(month);
+        displayExpenses(expenses);
 
-        System.out.print("Enter a short description of the expense (e.g., Superstore): ");
-        description = input.next();
+        System.out.print("Which expense would you like to remove? ");
+        position = input.nextInt();
 
-        System.out.println("Enter the category that this expense belongs to (e.g., Groceries): ");
-        category = input.next();
+        target = expenseList.removeExpense(expenses.get(position - 1));
 
-        System.out.println("Enter the date and time of this expense (e.g., \"09:30 Oct 12, 2021\"): ");
-        date = stringToDate(input.next());
-
-        Expense target = new Expense(amount, description, category, date);
-
-        expenseList.removeExpense(target);
-
-        System.out.println("Successfully deleted!");
+        System.out.println("Successfully deleted:");
+        System.out.println(target.toString());
     }
 
     //EFFECTS: displays a given list of expenses
@@ -183,9 +178,9 @@ public class EasyMoneyApp {
         if (expenses.size() == 0) {
             System.out.println("You don't have any expenses, add one!");
         } else {
-            System.out.printf("\n%-10s %-25s %-20s %s \n", "Amount", "Description", "Category", "Date");
-            for (Expense e : expenses) {
-                System.out.println(e.toString());
+            System.out.printf("\n%-4s %-10s %-25s %-20s %s \n", " ", "Amount", "Description", "Category", "Date");
+            for (int i = 0; i < expenses.size(); i++) {
+                System.out.printf("%-4s %s\n", (i + 1 + "."), expenses.get(i).toString());
             }
         }
     }
