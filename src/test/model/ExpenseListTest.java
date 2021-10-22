@@ -152,6 +152,20 @@ class ExpenseListTest {
     }
 
     @Test
+    public void testRemoveExpenseIndex() {
+        expenses.addExpense(e1);
+        expenses.addExpense(e2);
+        expenses.addExpense(e3);
+
+        assertEquals(3, expenses.length());
+        assertEquals(e2, expenses.removeExpense(2));
+        assertEquals(2, expenses.length());
+
+        assertEquals(e1, expenses.getAllExpenses().get(0));
+        assertEquals(e3, expenses.getAllExpenses().get(1));
+    }
+
+    @Test
     public void testLength() {
         expenses.addExpense(e1);
         assertEquals(1, expenses.length());

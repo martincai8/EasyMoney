@@ -54,13 +54,24 @@ public class ExpenseList {
     //REQUIRES: expenses is not empty
     //MODIFIES: this
     //EFFECTS: removes the expense with the matching amount, description, category, and date from expenses
-    public void removeExpense(Expense target) {
-        for (Expense e : expenses) {
-            if (checkEquals(e, target)) {
-                expenses.remove(e);
-                break;
-            }
-        }
+    public Expense removeExpense(Expense target) {
+//        for (Expense e : expenses) {
+//            if (checkEquals(e, target)) {
+//                expenses.remove(e);
+//                break;
+//            }
+//        }
+        expenses.remove(target);
+        return target;
+    }
+
+    //REQUIRES: expenses is not empty
+    //MODIFIES: this
+    //EFFECTS: removes the expense at a specific position in expenses and returns it
+    public Expense removeExpense(int position) {
+        Expense target = expenses.get(position - 1);
+        expenses.remove(target);
+        return target;
     }
 
     //EFFECTS: returns true if two Expense objects are identical (all field values are the same)
