@@ -23,3 +23,5 @@ want to develop an app is intuitive and useful.
 3. As a user, I want to be able to view all my expenses that belong to a certain category 
 (e.g., restaurants, groceries).
 4. As a user, I want to be able to delete an entry from my list of expenses.
+5. As a user, I want to be able given the option to load an existing list of expenses when I start the program.
+6. As a user, I want to be given the option to save my list of expenses when I quit the app.
