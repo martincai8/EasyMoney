@@ -1,0 +1,20 @@
+{"expenses": [
+    {
+        "date": "09:10 Oct 12, 2020",
+        "amount": 100,
+        "description": "T&T Supermarket",
+        "category": "Groceries"
+    },
+    {
+        "date": "09:10 Oct 12, 2020",
+        "amount": 59.5,
+        "description": "H&M",
+        "category": "Shopping"
+    },
+    {
+        "date": "09:10 Jul 12, 2020",
+        "amount": 20,
+        "description": "Cineplex",
+        "category": "Movies"
+    }
+]}

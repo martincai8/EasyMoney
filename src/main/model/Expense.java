@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 //Represents an expense with a dollar amount, description, category, and date
-public class Expense {
+public class Expense implements Writable {
     private double amount;
     private String description;
     private String category;
@@ -73,5 +76,15 @@ public class Expense {
     @Override
     public String toString() {
         return String.format("%-10.2f %-25s %-20s %s", amount, description, category, dateToString());
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("amount", amount);
+        json.put("description", description);
+        json.put("category", category);
+        json.put("date", dateToString());
+        return json;
     }
 }

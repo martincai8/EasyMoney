@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -7,10 +11,10 @@ import java.util.List;
 import java.time.*;
 
 //Represents a list of Expenses
-public class ExpenseList {
+public class ExpenseList implements Writable {
     private List<Expense> expenses;
 
-    // EFFECTS: expenses is empty
+    // EFFECTS: constructs ExpenseList with an empty list of expenses
     public ExpenseList() {
         expenses = new ArrayList<>();
     }
@@ -80,7 +84,22 @@ public class ExpenseList {
                 && e1.getDescription().equals(e2.getDescription())
                 && e1.getCategory().equals(e2.getCategory())
                 && e1.getDate().equals(e2.getDate());
+    }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("expenses", expensesToJson());
+        return json;
+    }
+
+    //EFFECTS: returns the expenses in this list as a JSON array
+    public JSONArray expensesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Expense e : expenses) {
+            jsonArray.put(e.toJson());
+        }
+        return jsonArray;
     }
 
     //EFFECTS: returns the number of expenses in the list
