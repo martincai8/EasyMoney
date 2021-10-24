@@ -185,6 +185,7 @@ public class EasyMoneyApp {
         }
     }
 
+    //REQUIRES: dateStr to be in the format "HH:mm MMM dd, yyyy"
     //EFFECTS: returns a LocalDateTime object parsed from a string
     public LocalDateTime stringToDate(String dateStr) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm MMM dd, yyyy");
