@@ -79,7 +79,6 @@ public class Expense implements Writable {
         return String.format("%-10.2f %-25s %-20s %s", amount, description, category, dateToString());
     }
 
-
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
