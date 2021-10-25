@@ -72,14 +72,6 @@ public class ExpenseList implements Writable {
         return target;
     }
 
-    //EFFECTS: returns true if two Expense objects are identical (all field values are the same)
-    public boolean checkEquals(Expense e1, Expense e2) {
-        return (e1.getAmount().equals(e2.getAmount()))
-                && e1.getDescription().equals(e2.getDescription())
-                && e1.getCategory().equals(e2.getCategory())
-                && e1.getDate().equals(e2.getDate());
-    }
-
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

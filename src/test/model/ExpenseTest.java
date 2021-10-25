@@ -95,4 +95,9 @@ public class ExpenseTest {
                 LocalDateTime.of(2020, Month.OCTOBER, 11, 9,10));
         assertFalse(e1.equals(target));
     }
+
+    @Test
+    public void testHashCode() {
+        assertEquals(1050349584, hashCode());
+    }
 }

@@ -94,9 +94,6 @@ public class Expense implements Writable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
         Expense expense = (Expense) o;
         return Double.compare(expense.amount, amount) == 0
                 && Objects.equals(description, expense.description)
