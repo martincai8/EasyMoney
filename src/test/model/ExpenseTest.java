@@ -98,6 +98,10 @@ public class ExpenseTest {
 
     @Test
     public void testHashCode() {
-        assertEquals(1050349584, hashCode());
+        Expense e1 = new Expense(100, "T&T Supermarket", "Groceries",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        Expense e2 = new Expense(100, "T&T Supermarket", "Groceries",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        assertTrue(e1.hashCode() == e2.hashCode());
     }
 }
