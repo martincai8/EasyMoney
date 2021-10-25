@@ -2,7 +2,11 @@ package ui;
 
 import model.Expense;
 import model.ExpenseList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
@@ -11,11 +15,15 @@ import java.util.*;
 //EasyMoney application
 //This class references code from https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class EasyMoneyApp {
+    private static final String DIRECTORY = "./data/defaultExpenseList.json";
     private ExpenseList expenseList;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
 
     //EFFECTS: runs the EasyMoney application
-    public EasyMoneyApp() {
+    public EasyMoneyApp() throws FileNotFoundException {
         runEasyMoney();
     }
 
@@ -24,10 +32,11 @@ public class EasyMoneyApp {
     private void runEasyMoney() {
         boolean keepGoing = true;
         String option;
+        String save;
 
         init();
-
         displayWelcome();
+        loadFile();
 
         while (keepGoing) {
             displayMenu();
@@ -35,6 +44,11 @@ public class EasyMoneyApp {
             option = input.next().toLowerCase();
 
             if (option.equals("q")) {
+                System.out.print("Would you like to save your current expenses? y/n ");
+                save = input.next();
+                if (save.equals("y")) {
+                    saveFile();
+                }
                 System.out.println("Thank you for using EasyMoney, have a great day!");
                 keepGoing = false;
             } else {
@@ -42,6 +56,26 @@ public class EasyMoneyApp {
             }
             System.out.print("\n");
 
+        }
+    }
+
+    private void saveFile() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(expenseList);
+            jsonWriter.close();
+            System.out.println("Saved expenses to " + DIRECTORY);
+        } catch (FileNotFoundException e) {
+            System.out.println("There was an error saving your file.");
+        }
+    }
+
+    private void loadFile() {
+        try {
+            expenseList = jsonReader.read();
+            System.out.println("Loaded expenses from " + DIRECTORY);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file");
         }
     }
 
@@ -54,11 +88,12 @@ public class EasyMoneyApp {
     //EFFECTS: displays the menu options for the user to choose from
     private void displayMenu() {
         System.out.println("Please pick from one of the following options:");
-        System.out.println("a -> view all expenses");
-        System.out.println("b -> view all expenses from a certain category");
-        System.out.println("c -> view all expenses from a certain month");
-        System.out.println("d -> add a new expense");
-        System.out.println("e -> delete an existing expense");
+        System.out.println("1 -> view all expenses");
+        System.out.println("2 -> view all expenses from a certain category");
+        System.out.println("3 -> view all expenses from a certain month");
+        System.out.println("4 -> add a new expense");
+        System.out.println("5 -> delete an existing expense");
+        System.out.println("s -> save file");
         System.out.println("q -> quit");
     }
 
@@ -67,16 +102,18 @@ public class EasyMoneyApp {
     private void processOption(String opt) {
         String option = opt;
 
-        if (option.equals("a")) {
+        if (option.equals("1")) {
             viewAllExpenses();
-        } else if (option.equals("b")) {
+        } else if (option.equals("2")) {
             viewAllExpensesFromCategory();
-        } else if (option.equals("c")) {
+        } else if (option.equals("3")) {
             viewAllExpensesFromMonth();
-        } else if (option.equals("d")) {
+        } else if (option.equals("4")) {
             addNewExpense();
-        } else if (option.equals("e")) {
+        } else if (option.equals("5")) {
             deleteExpense();
+        } else if (option.equals("s")) {
+            saveFile();
         } else {
             System.out.println("Please try again: ");
             option = input.next().toLowerCase();
@@ -129,7 +166,6 @@ public class EasyMoneyApp {
         String dateStr;
         LocalDateTime date;
 
-
         System.out.print("Enter the dollar amount of the expense: $");
         amount = input.nextDouble();
 
@@ -147,7 +183,8 @@ public class EasyMoneyApp {
 
         expenseList.addExpense(newExpense);
 
-        System.out.println("Successfully added!");
+        System.out.println("Successfully added:");
+        System.out.println(newExpense);
     }
 
     //MODIFIES: this
@@ -205,12 +242,14 @@ public class EasyMoneyApp {
                 LocalDateTime.of(2021, Month.OCTOBER, 12, 23,10));
 
         expenseList = new ExpenseList();
-        expenseList.addExpense(e1);
-        expenseList.addExpense(e2);
-        expenseList.addExpense(e3);
-        expenseList.addExpense(e4);
+//        expenseList.addExpense(e1);
+//        expenseList.addExpense(e2);
+//        expenseList.addExpense(e3);
+//        expenseList.addExpense(e4);
 
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(DIRECTORY);
+        jsonReader = new JsonReader(DIRECTORY);
     }
 }

@@ -1,0 +1,26 @@
+{"expenses": [
+    {
+        "date": "09:10 Feb 14, 2021",
+        "amount": 12.5,
+        "description": "Cineplex",
+        "category": "Movies"
+    },
+    {
+        "date": "19:10 Jan 14, 2021",
+        "amount": 100,
+        "description": "Uniqlo",
+        "category": "Shopping"
+    },
+    {
+        "date": "11:59 Jan 11, 2021",
+        "amount": 24,
+        "description": "Kinton Ramen",
+        "category": "Restaurants"
+    },
+    {
+        "date": "15:21 Feb 16, 2021",
+        "amount": 59,
+        "description": "Superstore",
+        "category": "Groceries"
+    }
+]}
