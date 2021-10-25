@@ -59,6 +59,7 @@ public class EasyMoneyApp {
         }
     }
 
+    //EFFECTS: saves expenses to file
     private void saveFile() {
         try {
             jsonWriter.open();
@@ -70,6 +71,8 @@ public class EasyMoneyApp {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: loads expenses from file
     private void loadFile() {
         try {
             expenseList = jsonReader.read();
@@ -232,21 +235,7 @@ public class EasyMoneyApp {
     // MODIFIES: this
     // EFFECTS: initializes expenseList and adds sample expenses
     private void init() {
-        Expense e1 = new Expense(100, "T&T Supermarket", "Groceries",
-                LocalDateTime.of(2021, Month.JANUARY, 9, 20,15));
-        Expense e2 = new Expense(59.5, "H&M", "Shopping",
-                LocalDateTime.of(2021, Month.FEBRUARY, 14, 9,10));
-        Expense e3 = new Expense(20, "Cineplex", "Movies",
-                LocalDateTime.of(2021, Month.FEBRUARY, 14, 14,1));
-        Expense e4 = new Expense(23, "Cineplex", "Movies",
-                LocalDateTime.of(2021, Month.OCTOBER, 12, 23,10));
-
         expenseList = new ExpenseList();
-//        expenseList.addExpense(e1);
-//        expenseList.addExpense(e2);
-//        expenseList.addExpense(e3);
-//        expenseList.addExpense(e4);
-
         input = new Scanner(System.in);
         input.useDelimiter("\n");
         jsonWriter = new JsonWriter(DIRECTORY);

@@ -60,9 +60,39 @@ public class ExpenseTest {
 
     @Test
     public void testToString() {
-        assertEquals("100.00     T&T Supermarket      Groceries       09:10 Oct 12, 2020",
+        assertEquals("100.00     T&T Supermarket           Groceries            09:10 Oct 12, 2020",
                 expense.toString());
-        assertEquals("25.00      Cineplex             Movies          09:10 Oct 12, 2020",
+        assertEquals("25.00      Cineplex                  Movies               09:10 Oct 12, 2020",
                 expense2.toString());
+    }
+
+    @Test
+    public void testEquals() {
+        Expense e1 = new Expense(100, "T&T Supermarket", "Groceries",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        Expense e2 = new Expense(59.5, "H&M", "Shopping",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        Expense e3 = new Expense(20, "Cineplex", "Movies",
+                LocalDateTime.of(2020, Month.JULY, 12, 9,10));
+
+        Expense target = new Expense(100, "T&T Supermarket", "Groceries",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        assertTrue(e1.equals(target));
+
+        target = new Expense(10, "T&T Supermarket", "Groceries",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        assertFalse(e1.equals(target));
+
+        target = new Expense(100, "Superstore", "Groceries",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        assertFalse(e1.equals(target));
+
+        target = new Expense(100, "T&T Supermarket", "Restaurant",
+                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
+        assertFalse(e1.equals(target));
+
+        target = new Expense(100, "T&T Supermarket", "Groceries",
+                LocalDateTime.of(2020, Month.OCTOBER, 11, 9,10));
+        assertFalse(e1.equals(target));
     }
 }

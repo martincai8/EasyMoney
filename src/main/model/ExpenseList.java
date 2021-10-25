@@ -59,12 +59,6 @@ public class ExpenseList implements Writable {
     //MODIFIES: this
     //EFFECTS: removes the expense with the matching amount, description, category, and date from expenses
     public Expense removeExpense(Expense target) {
-//        for (Expense e : expenses) {
-//            if (checkEquals(e, target)) {
-//                expenses.remove(e);
-//                break;
-//            }
-//        }
         expenses.remove(target);
         return target;
     }

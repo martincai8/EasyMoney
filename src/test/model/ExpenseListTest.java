@@ -99,29 +99,6 @@ class ExpenseListTest {
     }
 
     @Test
-    public void testEquals() {
-        Expense target = new Expense(100, "T&T Supermarket", "Groceries",
-                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
-        assertTrue(expenses.checkEquals(e1, target));
-
-        target = new Expense(10, "T&T Supermarket", "Groceries",
-                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
-        assertFalse(expenses.checkEquals(e1, target));
-
-        target = new Expense(100, "Superstore", "Groceries",
-                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
-        assertFalse(expenses.checkEquals(e1, target));
-
-        target = new Expense(100, "T&T Supermarket", "Restaurant",
-                LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10));
-        assertFalse(expenses.checkEquals(e1, target));
-
-        target = new Expense(100, "T&T Supermarket", "Groceries",
-                LocalDateTime.of(2020, Month.OCTOBER, 11, 9,10));
-        assertFalse(expenses.checkEquals(e1, target));
-    }
-
-    @Test
     public void testRemoveExpenseExists() {
         expenses.addExpense(e1);
         expenses.addExpense(e2);

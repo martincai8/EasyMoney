@@ -5,6 +5,7 @@ import persistence.Writable;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 //Represents an expense with a dollar amount, description, category, and date
 public class Expense implements Writable {
@@ -78,6 +79,7 @@ public class Expense implements Writable {
         return String.format("%-10.2f %-25s %-20s %s", amount, description, category, dateToString());
     }
 
+    //EFFECTS:
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -86,5 +88,25 @@ public class Expense implements Writable {
         json.put("category", category);
         json.put("date", dateToString());
         return json;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Expense expense = (Expense) o;
+        return Double.compare(expense.amount, amount) == 0
+                && Objects.equals(description, expense.description)
+                && Objects.equals(category, expense.category)
+                && Objects.equals(date, expense.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount, description, category, date);
     }
 }
