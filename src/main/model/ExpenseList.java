@@ -7,6 +7,8 @@ import persistence.Writable;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.time.*;
 
@@ -28,6 +30,14 @@ public class ExpenseList implements Writable {
     //REQUIRES: expenses isn't empty
     //EFFECTS: returns all expenses
     public List<Expense> getAllExpenses() {
+        this.sortByDate();
+        return expenses;
+    }
+
+    //REQUIRES: expenses parameter isn't empty
+    //EFFECTS: returns the passed in list of expenses sorted by date
+    public List<Expense> sortByDate() {
+        Collections.sort(expenses, Comparator.comparing(Expense::getDate));
         return expenses;
     }
 

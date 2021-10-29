@@ -36,7 +36,7 @@ class ExpenseListTest {
     }
 
     @Test
-    public void getAllExpenses() {
+    public void testGetAllExpenses() {
         expenses.addExpense(e1);
         expenses.addExpense(e2);
         expenses.addExpense(e3);
@@ -52,7 +52,28 @@ class ExpenseListTest {
     }
 
     @Test
-    public void getAllExpensesFromMonthDoesNotExist() {
+    public void testSortByDate() {
+        e1 = new Expense(100, "T&T Supermarket", "Groceries",
+                LocalDateTime.of(2020, Month.DECEMBER, 12, 9,10));
+        e2 = new Expense(59.5, "H&M", "Shopping", LocalDateTime.of(2020, Month.JANUARY,
+                12, 9,10));
+        e3 = new Expense(20, "Cineplex", "Movies", LocalDateTime.of(2020, Month.JULY,
+                12, 9,10));
+        expenses.addExpense(e1);
+        expenses.addExpense(e2);
+        expenses.addExpense(e3);
+
+        expenses.sortByDate();
+        List<Expense> expensesSortedByDate  = expenses.getAllExpenses();
+
+        assertEquals(3, expensesSortedByDate.size());
+        assertEquals(e2, expensesSortedByDate.get(0));
+        assertEquals(e3, expensesSortedByDate.get(1));
+        assertEquals(e1, expensesSortedByDate.get(2));
+    }
+
+    @Test
+    public void testGetAllExpensesFromMonthDoesNotExist() {
         expenses.addExpense(e1);
         expenses.addExpense(e2);
         expenses.addExpense(e3);
@@ -62,7 +83,7 @@ class ExpenseListTest {
     }
 
     @Test
-    public void getAllExpensesFromMonthExists() {
+    public void testGetAllExpensesFromMonthExists() {
         expenses.addExpense(e1);
         expenses.addExpense(e2);
         expenses.addExpense(e3);
@@ -74,7 +95,7 @@ class ExpenseListTest {
     }
 
     @Test
-    public void getAllExpensesFromCategoryDoesNotExist() {
+    public void testGetAllExpensesFromCategoryDoesNotExist() {
         expenses.addExpense(e1);
         expenses.addExpense(e2);
         expenses.addExpense(e3);
@@ -84,7 +105,7 @@ class ExpenseListTest {
     }
 
     @Test
-    public void getAllExpensesFromCategoryExists() {
+    public void testGetAllExpensesFromCategoryExists() {
         Expense e4 = new Expense(23, "Cineplex", "Movies",
                 LocalDateTime.of(2020, Month.JANUARY, 12, 23,10));
         expenses.addExpense(e1);
