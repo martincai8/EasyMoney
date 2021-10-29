@@ -12,6 +12,12 @@
         "category": "Shopping"
     },
     {
+        "date": "06:30 Feb 11, 2021",
+        "amount": 3.25,
+        "description": "Blue Chip",
+        "category": "Restaurants"
+    },
+    {
         "date": "09:10 Feb 14, 2021",
         "amount": 12.5,
         "description": "Cineplex",
@@ -20,6 +26,12 @@
     {
         "date": "15:21 Feb 16, 2021",
         "amount": 59,
+        "description": "Superstore",
+        "category": "Groceries"
+    },
+    {
+        "date": "19:13 Oct 05, 2021",
+        "amount": 25.3,
         "description": "Superstore",
         "category": "Groceries"
     },

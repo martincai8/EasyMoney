@@ -36,8 +36,9 @@ public class ExpenseList implements Writable {
 
     //REQUIRES: expenses parameter isn't empty
     //EFFECTS: returns the passed in list of expenses sorted by date
+    // this class references code from https://stackoverflow.com/questions/5927109/sort-objects-in-arraylist-by-date
     public List<Expense> sortByDate() {
-        Collections.sort(expenses, Comparator.comparing(Expense::getDate));
+        expenses.sort(Comparator.comparing(Expense::getDate));
         return expenses;
     }
 
