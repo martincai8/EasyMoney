@@ -56,7 +56,7 @@ public class JsonReader {
         }
     }
 
-    //MODIFIES: this
+    //MODIFIES: el
     //EFFECTS: parses expense from JSON object and adds them to the list of expenses
     private void addExpense(ExpenseList el, JSONObject jsonObject) {
         Double amount = jsonObject.getDouble("amount");
