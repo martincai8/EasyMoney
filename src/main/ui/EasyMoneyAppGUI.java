@@ -31,7 +31,11 @@ public class EasyMoneyAppGUI extends JFrame {
 
     private JFrame frame;
     private JPanel titlePanel;
+    private JPanel cardLayoutPanel;
+    private JPanel homePagePanel;
     private JPanel textAreaPanel;
+
+    private CardLayout cards = new CardLayout();
 
     //EFFECTS: runs the EasyMoney application
     public EasyMoneyAppGUI() throws FileNotFoundException {
@@ -41,16 +45,28 @@ public class EasyMoneyAppGUI extends JFrame {
     private void runApp() {
         init();
 
-        frame = new Frame(WIDTH, HEIGHT);
-        titlePanel = new TitlePanel(WIDTH, HEIGHT);
         frame.add(titlePanel);
-//        drawTitle();
-        String text = "";
-        drawTextArea(text);
+
+        cardLayoutPanel.setLayout(cards);
+
+        cardLayoutPanel.add(homePagePanel, "home page");
+//        JPanel j1 = new JPanel();
+//        j1.setBackground(Color.BLUE);
+//        JPanel j2 = new JPanel();
+//        j2.setBackground(Color.CYAN);
+//
+//        cardLayoutPanel.add(j1, "2");
+//        cardLayoutPanel.add(j2, "1");
+
+        cards.show(cardLayoutPanel, "home page");
+        frame.add(cardLayoutPanel);
+
+//        String text = "";
+//        drawTextArea(text);
         frame.setVisible(true);
     }
 
-    private void drawFrame() {
+//    private void drawFrame() {
 //        frame = new JFrame();
 //        frame.setTitle("EasyMoney App");
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,24 +74,24 @@ public class EasyMoneyAppGUI extends JFrame {
 //        frame.setSize(WIDTH, HEIGHT);
 //        frame.setLayout(null);
 //        frame.getContentPane().setBackground(Color.WHITE);
-    }
+//    }
 
-    private void drawTitle() {
-        titlePanel = new JPanel();
-        titlePanel.setBackground(Color.WHITE);
-//        titlePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        titlePanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * 0.05));
-
-        JLabel title = new JLabel();
-        title.setText("EasyMoney");
-        title.setHorizontalAlignment(JLabel.CENTER);
-        title.setVerticalAlignment(SwingConstants.CENTER);
-        title.setForeground(new Color(0, 100, 0));
-        title.setFont(new Font("Monospaced", Font.BOLD, 24));
-
-        titlePanel.add(title);
-        frame.add(titlePanel);
-    }
+//    private void drawTitle() {
+//        titlePanel = new JPanel();
+//        titlePanel.setBackground(Color.WHITE);
+////        titlePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//        titlePanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * 0.05));
+//
+//        JLabel title = new JLabel();
+//        title.setText("EasyMoney");
+//        title.setHorizontalAlignment(JLabel.CENTER);
+//        title.setVerticalAlignment(SwingConstants.CENTER);
+//        title.setForeground(new Color(0, 100, 0));
+//        title.setFont(new Font("Monospaced", Font.BOLD, 24));
+//
+//        titlePanel.add(title);
+//        frame.add(titlePanel);
+//    }
 
     private void drawTextArea(String text) {
         textAreaPanel = new JPanel();
@@ -306,9 +322,10 @@ public class EasyMoneyAppGUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: initializes expenseList and adds sample expenses
     private void init() {
-        frame = new JFrame();
-        titlePanel = new JPanel();
-        textAreaPanel = new JPanel();
+        frame = new Frame(WIDTH, HEIGHT);
+        titlePanel = new TitlePanel(WIDTH, HEIGHT);
+        cardLayoutPanel = new CardLayoutPanel(WIDTH, HEIGHT);
+        homePagePanel = new HomePagePanel(WIDTH, HEIGHT);
 
         expenseList = new ExpenseList();
         input = new Scanner(System.in);
