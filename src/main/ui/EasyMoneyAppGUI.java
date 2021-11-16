@@ -48,6 +48,8 @@ public class EasyMoneyAppGUI extends JFrame {
     private JButton allExpensesFromMonth;
     private JButton addExpense;
     private JButton deleteExpense;
+    private JButton saveFile;
+    private JButton quit;
 
     private JList<Expense> jList;
     private DefaultListModel<Expense> model;
@@ -68,7 +70,7 @@ public class EasyMoneyAppGUI extends JFrame {
         cardLayoutPanel.add(homePagePanel, "home page");
         cardLayoutPanel.add(showExpensesPanel, "all expenses");
 
-        cards.show(cardLayoutPanel, "all expenses");
+        cards.show(cardLayoutPanel, "start up page");
         frame.add(cardLayoutPanel);
 
 //        String text = "";
@@ -191,6 +193,12 @@ public class EasyMoneyAppGUI extends JFrame {
             addExpense.setBounds(60, 390, 250, 50);
             deleteExpense.setBounds(60, 460, 250, 50);
 
+            allExpenses.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cards.show(cardLayoutPanel, "all expenses");
+                }
+            });
             this.add(allExpenses);
             this.add(allExpensesFromCat);
             this.add(allExpensesFromMonth);
@@ -199,8 +207,8 @@ public class EasyMoneyAppGUI extends JFrame {
         }
 
         private void addBottomButtons() {
-            JButton saveFile = new JButton("save file");
-            JButton quit = new JButton("quit");
+            saveFile = new JButton("save file");
+            quit = new JButton("quit");
 
             saveFile.setBounds(20, 650, 100, 50);
             quit.setBounds(260, 650, 100, 50);
@@ -217,15 +225,14 @@ public class EasyMoneyAppGUI extends JFrame {
             jList = new JList<>();
             model = new DefaultListModel<>();
 
-//            loadFile();
-//            List<Expense> expenses = expenseList.getAllExpenses();
-//
-//            for (Expense e : expenses) {
-//                model.addElement(e);
-//            }
-            model.addElement(new Expense(100, "T&T", "Groceries", LocalDateTime.now()));
-            model.addElement(new Expense(100, "T&T", "Groceries", LocalDateTime.now()));
+            loadFile();
+            List<Expense> expenses = expenseList.getAllExpenses();
+
+            for (Expense e : expenses) {
+                model.addElement(e);
+            }
             jList.setModel(model);
+            jList.setSelectedIndex(0);
 
             JScrollPane scroll = new JScrollPane(jList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                     JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -236,37 +243,6 @@ public class EasyMoneyAppGUI extends JFrame {
             this.setBorder(BorderFactory.createEmptyBorder());
         }
     }
-
-
-
-
-//    private void drawTextArea(String text) {
-//        textAreaPanel = new JPanel();
-//        textAreaPanel.setBackground(Color.WHITE);
-//
-//        jList = new JList<>();
-//        model = new DefaultListModel<>();
-//
-//        model.addElement(new Expense(100, "T&T", "Groceries", LocalDateTime.now()));
-//        model.addElement(new Expense(100, "T&T", "Groceries", LocalDateTime.now()));
-//        jList.setModel(model);
-//
-////        JTextArea textArea = new JTextArea();
-////        textArea.setFont(new Font("Monospaces", Font.PLAIN, 15));
-////        textArea.setEditable(true);
-////
-////        textArea.append(text);
-//
-//        JScrollPane scroll = new JScrollPane(jList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-//                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//        scroll.setPreferredSize(new Dimension((int) (WIDTH * 0.95), (int) (HEIGHT * 0.6)));
-//
-//        textAreaPanel.add(scroll);
-//        textAreaPanel.setBounds(0, (int) (HEIGHT * 0.05), WIDTH, (int) (HEIGHT * 0.7));
-//        textAreaPanel.setBorder(BorderFactory.createEmptyBorder());
-//
-//        frame.add(textAreaPanel);
-//    }
 
     // MODIFIES: this
     // EFFECTS: processes user input
@@ -315,6 +291,7 @@ public class EasyMoneyAppGUI extends JFrame {
     //MODIFIES: this
     //EFFECTS: loads expenses from file
     private void loadFile() {
+
         try {
             expenseList = jsonReader.read();
             System.out.println("Loaded expenses from " + DIRECTORY);
@@ -476,6 +453,10 @@ public class EasyMoneyAppGUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: initializes expenseList and adds sample expenses
     private void init() {
+        expenseList = new ExpenseList();
+        jsonWriter = new JsonWriter(DIRECTORY);
+        jsonReader = new JsonReader(DIRECTORY);
+
         frame = new Frame(WIDTH, HEIGHT);
         titlePanel = new TitlePanel(WIDTH, HEIGHT);
         cardLayoutPanel = new CardLayoutPanel(WIDTH, HEIGHT);
@@ -483,11 +464,7 @@ public class EasyMoneyAppGUI extends JFrame {
         homePagePanel = new HomePagePanel(WIDTH, HEIGHT);
         showExpensesPanel = new ShowExpensesPanel(WIDTH, HEIGHT);
 
-        expenseList = new ExpenseList();
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
-        jsonWriter = new JsonWriter(DIRECTORY);
-        jsonReader = new JsonReader(DIRECTORY);
+
     }
 }
 
