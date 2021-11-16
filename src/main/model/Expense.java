@@ -76,7 +76,7 @@ public class Expense implements Writable {
     //EFFECTS: formats the information from an Expense object into a String
     @Override
     public String toString() {
-        return String.format("%-10.2f %-25s %-20s %s", amount, description, category, dateToString());
+        return String.format("%-10.2f %-20s %-18s %s", amount, description, category, dateToString());
     }
 
     @Override
