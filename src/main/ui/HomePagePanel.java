@@ -71,7 +71,7 @@ public class HomePagePanel extends JPanel {
 
         allExpenses.addActionListener(e -> cards.show(cardLayoutPanel, "all expenses"));
         allExpensesFromCat.addActionListener(e -> cards.show(cardLayoutPanel, "expenses from category"));
-//        allExpensesFromMonth.addActionListener(e -> cards.show(cardLayoutPanel, "all expenses month"));
+        allExpensesFromMonth.addActionListener(e -> cards.show(cardLayoutPanel, "expenses from month"));
 //        addExpense.addActionListener(e -> cards.show(cardLayoutPanel, "add expense"));
 //        deleteExpense.addActionListener(e -> cards.show(cardLayoutPanel, "delete expense"));
 

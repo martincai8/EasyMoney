@@ -41,6 +41,7 @@ public class EasyMoneyAppGUI extends JFrame {
     private JPanel homePagePanel;
     private JPanel showExpensesPanel;
     private JPanel showExpensesFromCategoryPanel;
+    private JPanel showExpensesFromMonthPanel;
 
     private JButton start;
     private JButton allExpenses;
@@ -67,6 +68,7 @@ public class EasyMoneyAppGUI extends JFrame {
         cardLayoutPanel.add(homePagePanel, "home page");
         cardLayoutPanel.add(showExpensesPanel, "all expenses");
         cardLayoutPanel.add(showExpensesFromCategoryPanel, "expenses from category");
+        cardLayoutPanel.add(showExpensesFromMonthPanel, "expenses from month");
 
         cards.show(cardLayoutPanel, "start up page");
         frame.add(cardLayoutPanel);
@@ -329,7 +331,8 @@ public class EasyMoneyAppGUI extends JFrame {
         showExpensesPanel = new ShowExpensesPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
         showExpensesFromCategoryPanel = new ShowExpensesFromCategoryPanel(WIDTH, HEIGHT,
                 expenseList, cards, cardLayoutPanel);
-
+        showExpensesFromMonthPanel = new ShowExpensesFromMonthPanel(WIDTH, HEIGHT,
+                expenseList, cards, cardLayoutPanel);
     }
 }
 
