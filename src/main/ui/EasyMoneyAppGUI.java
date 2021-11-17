@@ -40,7 +40,7 @@ public class EasyMoneyAppGUI extends JFrame {
     private JPanel startUpPanel;
     private JPanel homePagePanel;
     private JPanel showExpensesPanel;
-    private JPanel textAreaPanel;
+    private JPanel showExpensesFromCategoryPanel;
 
     private JButton start;
     private JButton allExpenses;
@@ -51,10 +51,7 @@ public class EasyMoneyAppGUI extends JFrame {
     private JButton saveFile;
     private JButton quit;
 
-    private JList<Expense> jList;
-    private DefaultListModel<Expense> model;
-
-    private CardLayout cards = new CardLayout();
+    private CardLayout cards;
 
     //EFFECTS: runs the EasyMoney application
     public EasyMoneyAppGUI() throws FileNotFoundException {
@@ -69,6 +66,7 @@ public class EasyMoneyAppGUI extends JFrame {
         cardLayoutPanel.add(startUpPanel, "start up page");
         cardLayoutPanel.add(homePagePanel, "home page");
         cardLayoutPanel.add(showExpensesPanel, "all expenses");
+        cardLayoutPanel.add(showExpensesFromCategoryPanel, "expenses from category");
 
         cards.show(cardLayoutPanel, "start up page");
         frame.add(cardLayoutPanel);
@@ -78,171 +76,34 @@ public class EasyMoneyAppGUI extends JFrame {
         frame.setVisible(true);
     }
 
-    class Frame extends JFrame {
-        public Frame(int width, int height) {
-            this.setTitle("EasyMoney App");
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setResizable(false);
-            this.setSize(width, height);
-            this.setLayout(null);
-            this.getContentPane().setBackground(Color.WHITE);
-        }
-    }
-
-    class CardLayoutPanel extends JPanel {
-        public CardLayoutPanel(int width, int height) {
-            this.setBackground(Color.WHITE);
-            this.setBounds((int) (width * 0.025), (int) (height * 0.05), (int) (width * 0.95), (int) (height * 0.9));
-            this.setBorder(BorderFactory.createEmptyBorder());
-        }
-    }
-
-    class TitlePanel extends JPanel {
-        public TitlePanel(int width, int height) {
-            this.setBackground(Color.WHITE);
-            this.setBounds(0, 0, width, (int) (height * 0.05));
-
-            JLabel title = new JLabel();
-            title.setText("EasyMoney");
-            title.setHorizontalAlignment(JLabel.CENTER);
-            title.setVerticalAlignment(SwingConstants.CENTER);
-            title.setForeground(new Color(0, 100, 0));
-            title.setFont(new Font("Monospaced", Font.BOLD, 24));
-
-            this.add(title);
-        }
-    }
-
-    class StartUpPanel extends JPanel {
-//        private JButton start;
-
-        public StartUpPanel(int width, int height) {
-            this.setBackground(new Color(0, 100, 0));
-            this.setBounds((int) (width * 0.025), (int) (height * 0.05), (int) (width * 0.95), (int) (height * 0.9));
-            this.setBorder(BorderFactory.createEmptyBorder());
-            this.setLayout(null);
-
-            start = new JButton("Start");
-            start.setBounds(140, 500, 100, 50);
-
-            start.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    cards.show(cardLayoutPanel, "home page");
-                }
-            });
-            this.add(start);
-        }
-    }
-
-    class HomePagePanel extends JPanel {
-        private int width;
-        private int height;
-//        private JButton allExpenses;
-//        private JButton allExpensesFromCat;
-//        private JButton allExpensesFromMonth;
-//        private JButton addExpense;
-//        private JButton deleteExpense;
-
-        public HomePagePanel(int width, int height) {
-            this.width = width;
-            this.height = height;
-
-            this.setBackground(Color.WHITE);
-            this.setBounds((int) (this.width * 0.04), (int) (this.height * 0.05),
-                    (int) (this.width * 0.95), (int) (this.height * 0.9));
-            this.setBorder(BorderFactory.createEmptyBorder());
-            this.setLayout(null);
-
-            addItems();
-        }
-
-        private void addItems() {
-            addWelcomeText();
-            addMenuButtons();
-            addBottomButtons();
-        }
-
-        // the code from lines 7-10 of this method are from https://bit.ly/3DfykyB
-        private void addWelcomeText() {
-            JTextPane welcomeText = new JTextPane();
-            welcomeText.setText("Welcome to EasyMoney, please select one of the following options");
-            welcomeText.setFont(new Font("Monospaces", Font.PLAIN, 14));
-            welcomeText.setBounds((int) (width * 0.08), (int) (height * 0.1),
-                    (int) (width * 0.8), (int) (height * 0.05));
-            welcomeText.setEditable(false);
-
-            StyledDocument doc = welcomeText.getStyledDocument();
-            SimpleAttributeSet center = new SimpleAttributeSet();
-            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-            doc.setParagraphAttributes(0, doc.getLength(), center, false);
-
-            this.add(welcomeText);
-        }
-
-        private void addMenuButtons() {
-            allExpenses = new JButton("view all expenses");
-            allExpensesFromCat = new JButton("view all expenses from a category");
-            allExpensesFromMonth = new JButton("view all expenses from a month");
-            addExpense = new JButton("add new expense");
-            deleteExpense = new JButton("delete existing expense");
-
-            allExpenses.setBounds(60, 180, 250, 50);
-            allExpensesFromCat.setBounds(60, 250, 250, 50);
-            allExpensesFromMonth.setBounds(60, 320, 250, 50);
-            addExpense.setBounds(60, 390, 250, 50);
-            deleteExpense.setBounds(60, 460, 250, 50);
-
-            allExpenses.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    cards.show(cardLayoutPanel, "all expenses");
-                }
-            });
-            this.add(allExpenses);
-            this.add(allExpensesFromCat);
-            this.add(allExpensesFromMonth);
-            this.add(addExpense);
-            this.add(deleteExpense);
-        }
-
-        private void addBottomButtons() {
-            saveFile = new JButton("save file");
-            quit = new JButton("quit");
-
-            saveFile.setBounds(20, 650, 100, 50);
-            quit.setBounds(260, 650, 100, 50);
-
-            this.add(saveFile);
-            this.add(quit);
-        }
-    }
-
-    class ShowExpensesPanel extends JPanel {
-        public ShowExpensesPanel(int width, int height) {
-            this.setBackground(Color.WHITE);
-
-            jList = new JList<>();
-            model = new DefaultListModel<>();
-
-            loadFile();
-            List<Expense> expenses = expenseList.getAllExpenses();
-
-            for (Expense e : expenses) {
-                model.addElement(e);
-            }
-            jList.setModel(model);
-            jList.setSelectedIndex(0);
-
-            JScrollPane scroll = new JScrollPane(jList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            scroll.setPreferredSize(new Dimension((int) (width * 0.95), (int) (height * 0.6)));
-
-            this.add(scroll);
-            this.setBounds((int) (width * 0.025), (int) (height * 0.05), (int) (width * 0.95), (int) (height * 0.9));
-            this.setBorder(BorderFactory.createEmptyBorder());
-        }
-    }
+//    class ShowExpensesPanel extends JPanel {
+//        public ShowExpensesPanel(int width, int height) {
+//            this.setBackground(Color.WHITE);
+//
+//            jList = new JList<>();
+//            model = new DefaultListModel<>();
+//
+//            loadFile();
+//            List<Expense> expenses = expenseList.getAllExpenses();
+//
+//            for (Expense e : expenses) {
+//                model.addElement(e);
+//                model.addElement(e);
+//                model.addElement(e);
+//                model.addElement(e);
+//            }
+//            jList.setModel(model);
+//            jList.setSelectedIndex(0);
+//
+//            JScrollPane scroll = new JScrollPane(jList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+//                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//            scroll.setPreferredSize(new Dimension((int) (width * 0.95), (int) (height * 0.7)));
+//
+//            this.add(scroll);
+//            this.setBounds((int) (width * 0.025), (int) (height * 0.05), (int) (width * 0.95), (int) (height * 0.9));
+//            this.setBorder(BorderFactory.createEmptyBorder());
+//        }
+//    }
 
     // MODIFIES: this
     // EFFECTS: processes user input
@@ -457,13 +318,17 @@ public class EasyMoneyAppGUI extends JFrame {
         jsonWriter = new JsonWriter(DIRECTORY);
         jsonReader = new JsonReader(DIRECTORY);
 
+        loadFile();
+
+        cards = new CardLayout();
         frame = new Frame(WIDTH, HEIGHT);
         titlePanel = new TitlePanel(WIDTH, HEIGHT);
         cardLayoutPanel = new CardLayoutPanel(WIDTH, HEIGHT);
-        startUpPanel = new StartUpPanel(WIDTH, HEIGHT);
-        homePagePanel = new HomePagePanel(WIDTH, HEIGHT);
-        showExpensesPanel = new ShowExpensesPanel(WIDTH, HEIGHT);
-
+        startUpPanel = new StartUpPanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
+        homePagePanel = new HomePagePanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
+        showExpensesPanel = new ShowExpensesPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
+        showExpensesFromCategoryPanel = new ShowExpensesFromCategoryPanel(WIDTH, HEIGHT,
+                expenseList, cards, cardLayoutPanel);
 
     }
 }
