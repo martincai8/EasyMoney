@@ -28,8 +28,8 @@ public class ShowExpensesPanel extends JPanel {
         this.scroll = new JScrollPane(jlist, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         this.home = new JButton("home");
-
-        home.setBounds(160, 650, 100, 50);
+        this.home.setBounds(160, 650, 100, 50);
+        this.home.setFont(new Font("Monospaced", Font.PLAIN, 14));
         home.addActionListener(e -> cards.show(cardLayoutPanel, "home page"));
 
         loadList();
@@ -37,6 +37,7 @@ public class ShowExpensesPanel extends JPanel {
         this.jlist.setModel(model);
         this.jlist.setSelectedIndex(0);
         this.scroll.setBounds(0, 10, (int) (width * 0.95), (int) (height * 0.7));
+        this.jlist.setFont(new Font("Monospaced", Font.PLAIN, 10));
 
         this.add(scroll);
         this.add(home);

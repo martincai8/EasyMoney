@@ -14,8 +14,9 @@ public class StartUpPanel extends JPanel {
         this.setBorder(BorderFactory.createEmptyBorder());
         this.setLayout(null);
 
-        start = new JButton("Start");
-        start.setBounds(160, 500, 100, 50);
+        this.start = new JButton("start");
+        this.start.setBounds(160, 500, 100, 50);
+        this.start.setFont(new Font("Monospaced", Font.PLAIN, 14));
 
         start.addActionListener(e -> cards.show(cardLayoutPanel, "home page"));
         this.add(start);

@@ -41,8 +41,7 @@ public class AddExpensePanelNoSubmit extends JPanel {
 
     public AddExpensePanelNoSubmit(int width, int height, ExpenseList expenseList,
                            CardLayout cards, JPanel cardLayoutPanel) {
-        setUpFields();
-
+//        setUpFields();
         this.setBackground(Color.WHITE);
         this.setBounds((int) (width * 0.025), (int) (height * 0.05), (int) (width * 0.95), (int) (height * 0.9));
         this.setBorder(BorderFactory.createEmptyBorder());
@@ -79,18 +78,19 @@ public class AddExpensePanelNoSubmit extends JPanel {
 
         this.home = new JButton("home");
         this.home.setBounds(160, 650, 100, 50);
+        this.home.setFont(new Font("Monospaced", Font.PLAIN, 12));
         this.home.addActionListener(e -> cards.show(cardLayoutPanel, "home page"));
 
         addToPanel();
     }
 
-    private void setUpFields() {
-        this.width = width;
-        this.height = height;
-        this.expenseList = expenseList;
-        this.cards = cards;
-        this.cardLayoutPanel = cardLayoutPanel;
-    }
+//    private void setUpFields() {
+//        this.width = width;
+//        this.height = height;
+//        this.expenseList = expenseList;
+//        this.cards = cards;
+//        this.cardLayoutPanel = cardLayoutPanel;
+//    }
 
     private void setUpLabels() {
         this.dollarSign = new JLabel("$");
@@ -105,7 +105,6 @@ public class AddExpensePanelNoSubmit extends JPanel {
 
         setHorizontalAlignment();
 
-        this.dollarSign.setFont(new Font("Monospaced", Font.PLAIN, 14));
         this.dollarAmount.setFont(new Font("Monospaced", Font.PLAIN, 14));
         this.description.setFont(new Font("Monospaced", Font.PLAIN, 14));
         this.category.setFont(new Font("Monospaced", Font.PLAIN, 14));
@@ -130,21 +129,19 @@ public class AddExpensePanelNoSubmit extends JPanel {
     }
 
     private void labelsSetBounds() {
-        this.dollarSign.setBounds(160, 80, 20, 30);
+        this.dollarSign.setBounds(155, 75, 20, 30);
         this.dollarAmount.setBounds(140, 50, 140, 15);
         this.description.setBounds(140, 170, 140, 15);
         this.category.setBounds(140, 290, 140, 15);
         this.date.setBounds(140, 410, 140, 15);
         this.time.setBounds(140, 450, 140, 15);
-        this.month.setBounds(40, 530, 140, 15);
+        this.month.setBounds(35, 530, 140, 15);
         this.day.setBounds(140, 530, 140, 15);
-        this.year.setBounds(240, 530, 140, 15);
+        this.year.setBounds(245, 530, 140, 15);
     }
 
     private void setUpInputs() {
         String[] categories = {"Groceries", "Movies", "Restaurants", "Shopping"};
-//        ArrayList<String> months = new ArrayList<String>(Arrays.asList("January", "February", "March", "April", "May",
-//                "June", "July", "August", "September", "October", "November", "December"));
         String[] months = {"Jan", "Feb", "Mar", "Apr", "May",
                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
@@ -159,23 +156,36 @@ public class AddExpensePanelNoSubmit extends JPanel {
         }
         this.yearField = new JFormattedTextField();
 
-        this.dollarField.setBorder(BorderFactory.createLineBorder(new Color(0, 100, 0), 1));
-        this.descriptionField.setBorder(BorderFactory.createLineBorder(new Color(0, 100, 0), 1));
-        this.selectCategory.setBorder(BorderFactory.createLineBorder(new Color(0, 100, 0)));
-        this.timeField.setBorder(BorderFactory.createLineBorder(new Color(0, 100, 0), 1));
-        this.selectMonth.setBorder(BorderFactory.createLineBorder(new Color(0, 100, 0)));
-        this.selectDay.setBorder(BorderFactory.createLineBorder(new Color(0, 100, 0)));
-        this.yearField.setBorder(BorderFactory.createLineBorder(new Color(0, 100, 0), 1));
+        this.dollarField.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+        this.descriptionField.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+        this.timeField.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+        this.yearField.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+
+        this.selectCategory.setSelectedIndex(-1);
+        this.selectMonth.setSelectedIndex(-1);
+        this.selectDay.setSelectedIndex(-1);
+
+        setFontsForInputs();
+    }
+
+    private void setFontsForInputs() {
+        this.dollarField.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        this.descriptionField.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        this.selectCategory.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        this.timeField.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        this.selectMonth.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        this.selectDay.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        this.yearField.setFont(new Font("Monospaced", Font.PLAIN, 14));
     }
 
     private void inputsSetBounds() {
-        this.dollarField.setBounds(180, 80, 80, 30);
-        this.descriptionField.setBounds(140, 210, 140, 30);
-        this.selectCategory.setBounds(140, 320, 140, 30);
-        this.timeField.setBounds(170, 470, 80, 30);
-        this.selectMonth.setBounds(80, 550, 60, 30);
-        this.selectDay.setBounds(180, 550, 60, 30);
-        this.yearField.setBounds(280, 550, 80, 30);
+        this.dollarField.setBounds(190, 75, 50, 30);
+        this.descriptionField.setBounds(140, 205, 140, 30);
+        this.selectCategory.setBounds(140, 315, 140, 30);
+        this.timeField.setBounds(185, 465, 50, 30);
+        this.selectMonth.setBounds(60, 545, 90, 30);
+        this.selectDay.setBounds(180, 545, 60, 30);
+        this.yearField.setBounds(295, 545, 40, 30);
     }
 
 
@@ -198,14 +208,13 @@ public class AddExpensePanelNoSubmit extends JPanel {
         this.add(selectDay);
         this.add(yearField);
 
-//        this.add(submit);
         this.add(home);
 
     }
 
-    //REQUIRES: dateStr to be in the format "HH:mm MMM dd, yyyy"
+    //REQUIRES: dateStr to be in the format "HH:mm MMM dd, yyyy" or "HH:mm MMM d, yyyy"
     //EFFECTS: returns a LocalDateTime object parsed from a string
-    public LocalDateTime stringToDate(String dateStr, int day) {
+    public LocalDateTime stringToDate(String dateStr, String time, int day) {
         DateTimeFormatter format;
         if (day <= 9) {
             format = DateTimeFormatter.ofPattern("HH:mm MMM d, yyyy");

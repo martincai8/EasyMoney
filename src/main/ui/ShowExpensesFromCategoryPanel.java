@@ -18,17 +18,20 @@ public class ShowExpensesFromCategoryPanel extends ShowExpensesPanel {
                                          JPanel cardLayoutPanel) {
         super(width, height, expenseList, cards, cardLayoutPanel);
 
-        text = new JLabel("Select a category: ");
-        text.setBounds(40, 578, 120, 40);
-
-        submit = new JButton("submit");
-        submit.setBounds(290, 580, 80, 40);
+        this.text = new JLabel("Select a category:");
+        this.text.setBounds(25, 578, 140, 40);
+        this.text.setFont(new Font("Monospaced", Font.PLAIN, 12));
 
         String[] categories = {"Groceries", "Movies", "Restaurants", "Shopping"};
 
-        selectCategory = new JComboBox(categories);
-        selectCategory.setBounds(160, 580, 120, 40);
-        selectCategory.setForeground(Color.BLUE);
+        this.selectCategory = new JComboBox(categories);
+        this.selectCategory.setBounds(160, 580, 140, 40);
+        this.selectCategory.setForeground(new Color(0, 100, 0));
+        this.selectCategory.setFont(new Font("Monospaced", Font.PLAIN, 12));
+
+        this.submit = new JButton("submit");
+        this.submit.setBounds(310, 580, 80, 40);
+        this.submit.setFont(new Font("Monospaced", Font.PLAIN, 12));
 
         addActions(expenseList);
 

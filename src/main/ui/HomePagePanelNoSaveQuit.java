@@ -42,7 +42,7 @@ public class HomePagePanelNoSaveQuit extends JPanel {
     private void addWelcomeText() {
         JTextPane welcomeText = new JTextPane();
         welcomeText.setText("Welcome to EasyMoney, please select one of the following options");
-        welcomeText.setFont(new Font("Monospaces", Font.PLAIN, 14));
+        welcomeText.setFont(new Font("Monospaced", Font.PLAIN, 14));
         welcomeText.setBounds((int) (width * 0.08), (int) (height * 0.1), (int) (width * 0.8), (int) (height * 0.05));
         welcomeText.setEditable(false);
 
@@ -61,11 +61,7 @@ public class HomePagePanelNoSaveQuit extends JPanel {
         addExpense = new JButton("add new expense");
         deleteExpense = new JButton("delete existing expense");
 
-        allExpenses.setBounds(80, 180, 250, 50);
-        allExpensesFromCat.setBounds(80, 250, 250, 50);
-        allExpensesFromMonth.setBounds(80, 320, 250, 50);
-        addExpense.setBounds(80, 390, 250, 50);
-        deleteExpense.setBounds(80, 460, 250, 50);
+        menuButtonsSetUp();
 
         allExpenses.addActionListener(e -> cards.show(cardLayoutPanel, "all expenses"));
         allExpensesFromCat.addActionListener(e -> cards.show(cardLayoutPanel, "expenses from category"));
@@ -80,14 +76,17 @@ public class HomePagePanelNoSaveQuit extends JPanel {
         this.add(deleteExpense);
     }
 
-//    private void addBottomButtons() {
-//        JButton saveFile = new JButton("save file");
-//        JButton quit = new JButton("quit");
-//
-//        saveFile.setBounds(40, 650, 100, 50);
-//        quit.setBounds(280, 650, 100, 50);
-//
-//        this.add(saveFile);
-//        this.add(quit);
-//    }
+    private void menuButtonsSetUp() {
+        allExpenses.setBounds(80, 160, 250, 50);
+        allExpensesFromCat.setBounds(80, 250, 250, 50);
+        allExpensesFromMonth.setBounds(80, 340, 250, 50);
+        addExpense.setBounds(80, 430, 250, 50);
+        deleteExpense.setBounds(80, 520, 250, 50);
+
+        allExpenses.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        allExpensesFromCat.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        allExpensesFromMonth.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        addExpense.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        deleteExpense.setFont(new Font("Monospaced", Font.PLAIN, 12));
+    }
 }

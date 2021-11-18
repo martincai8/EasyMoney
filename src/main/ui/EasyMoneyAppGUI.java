@@ -89,6 +89,7 @@ public class EasyMoneyAppGUI extends JFrame {
             super(width, height, expenseList2, cards, cardLayoutPanel);
             this.submit = new JButton("submit");
             this.submit.setBounds(160, 600, 100, 50);
+            this.submit.setFont(new Font("Monospaced", Font.PLAIN, 12));
             this.submit.addActionListener(e -> {
                 Double dollarValue = Double.parseDouble(dollarField.getText());
                 String descriptionValue = (String) descriptionField.getText();
@@ -98,15 +99,29 @@ public class EasyMoneyAppGUI extends JFrame {
                 Integer dayValue = (int) selectDay.getSelectedIndex() + 1;
                 Integer yearValue = Integer.parseInt(yearField.getText());
                 String dateStr = timeValue + " " + monthValue + " " + dayValue + ", " + yearValue;
-                LocalDateTime date = stringToDate(dateStr, dayValue);
+                LocalDateTime date = stringToDate(dateStr, timeValue, dayValue);
                 Expense newExpense = new Expense(dollarValue, descriptionValue, categoryValue, date);
                 expenseList.addExpense(newExpense);
                 showExpensesPanel.refresh(expenseList.getAllExpenses());
                 showExpensesFromCategoryPanel.refresh(expenseList.getAllExpenses());
                 showExpensesFromMonthPanel.refresh(expenseList.getAllExpenses());
-                displayExpenses(expenseList.getAllExpenses());
+                refreshPanel();
             });
             this.add(submit);
+        }
+
+        private void refreshPanel() {
+            List<JFormattedTextField> fieldList = new ArrayList<>(Arrays.asList(
+                    dollarField, descriptionField, timeField, yearField));
+            List<JComboBox> boxList = new ArrayList<>(Arrays.asList(selectCategory, selectMonth, selectDay));
+
+            for (JFormattedTextField field : fieldList) {
+                field.setText("");
+            }
+
+            for (JComboBox box : boxList) {
+                box.setSelectedIndex(-1);
+            }
         }
     }
 
@@ -123,6 +138,7 @@ public class EasyMoneyAppGUI extends JFrame {
 
             this.deleteButton = new JButton("delete");
             this.deleteButton.setBounds(160, 600, 100, 50);
+            this.deleteButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
             this.deleteButton.addActionListener(e -> {
 //                rowNumToDelete = Integer.parseInt(deleteLabel.getText()) - 1;
                 String expense = jlist.getSelectedValue().toString();
@@ -140,6 +156,7 @@ public class EasyMoneyAppGUI extends JFrame {
     class HomePagePanel extends HomePagePanelNoSaveQuit {
         private JButton save;
         private JButton quit;
+
         public HomePagePanel(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, cards, cardLayoutPanel);
 
@@ -148,6 +165,8 @@ public class EasyMoneyAppGUI extends JFrame {
 
             save.setBounds(40, 650, 100, 50);
             quit.setBounds(280, 650, 100, 50);
+            save.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            quit.setFont(new Font("Monospaced", Font.PLAIN, 12));
 
             save.addActionListener(e -> {
                 saveFile();
@@ -165,35 +184,35 @@ public class EasyMoneyAppGUI extends JFrame {
     }
     // MODIFIES: this
     // EFFECTS: processes user input
-    private void runEasyMoney() {
-        boolean keepGoing = true;
-        String option;
-        String save;
-
-        init();
-        displayWelcome();
-        loadFile();
-
-        while (keepGoing) {
-            displayMenu();
-            System.out.print("Command: ");
-            option = input.next().toLowerCase();
-
-            if (option.equals("q")) {
-                System.out.print("Would you like to save your current expenses? y/n ");
-                save = input.next();
-                if (save.equals("y")) {
-                    saveFile();
-                }
-                System.out.println("Thank you for using EasyMoney, have a great day!");
-                keepGoing = false;
-            } else {
-                processOption(option);
-            }
-            System.out.print("\n");
-
-        }
-    }
+//    private void runEasyMoney() {
+//        boolean keepGoing = true;
+//        String option;
+//        String save;
+//
+//        init();
+//        displayWelcome();
+//        loadFile();
+//
+//        while (keepGoing) {
+//            displayMenu();
+//            System.out.print("Command: ");
+//            option = input.next().toLowerCase();
+//
+//            if (option.equals("q")) {
+//                System.out.print("Would you like to save your current expenses? y/n ");
+//                save = input.next();
+//                if (save.equals("y")) {
+//                    saveFile();
+//                }
+//                System.out.println("Thank you for using EasyMoney, have a great day!");
+//                keepGoing = false;
+//            } else {
+//                processOption(option);
+//            }
+//            System.out.print("\n");
+//
+//        }
+//    }
 
     //EFFECTS: saves expenses to file
     private void saveFile() {
