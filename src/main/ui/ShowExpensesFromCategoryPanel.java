@@ -13,6 +13,7 @@ public class ShowExpensesFromCategoryPanel extends ShowExpensesPanel {
     private JButton submit;
     private JComboBox selectCategory;
     private JLabel text;
+
     public ShowExpensesFromCategoryPanel(int width, int height, ExpenseList expenseList, CardLayout cards,
                                          JPanel cardLayoutPanel) {
         super(width, height, expenseList, cards, cardLayoutPanel);
