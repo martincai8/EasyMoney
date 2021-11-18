@@ -43,6 +43,7 @@ public class EasyMoneyAppGUI extends JFrame {
     private ShowExpensesFromCategoryPanel showExpensesFromCategoryPanel;
     private ShowExpensesFromMonthPanel showExpensesFromMonthPanel;
     private AddExpensePanel addExpensePanel;
+    private DeleteExpensePanel deleteExpensePanel;
 
     private JButton start;
     private JButton allExpenses;
@@ -72,8 +73,9 @@ public class EasyMoneyAppGUI extends JFrame {
         cardLayoutPanel.add(showExpensesFromCategoryPanel, "expenses from category");
         cardLayoutPanel.add(showExpensesFromMonthPanel, "expenses from month");
         cardLayoutPanel.add(addExpensePanel, "add expense");
+        cardLayoutPanel.add(deleteExpensePanel, "delete expense");
 
-        cards.show(cardLayoutPanel, "add expense");
+        cards.show(cardLayoutPanel, "start up page");
         frame.add(cardLayoutPanel);
 
 //        String text = "";
@@ -108,6 +110,59 @@ public class EasyMoneyAppGUI extends JFrame {
         }
     }
 
+    class DeleteExpensePanel extends ShowExpensesPanel {
+        private JButton deleteButton;
+
+        public DeleteExpensePanel(int width, int height, ExpenseList expenseList,
+                                  CardLayout cards, JPanel cardLayoutPanel) {
+            super(width, height, expenseList, cards, cardLayoutPanel);
+
+//            this.deleteLabel = new JLabel("enter the row # of the item you want to delete");
+//            this.deleteLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
+//            this.deleteLabel.setBounds(40, 450, 300, 15);
+
+            this.deleteButton = new JButton("delete");
+            this.deleteButton.setBounds(160, 600, 100, 50);
+            this.deleteButton.addActionListener(e -> {
+//                rowNumToDelete = Integer.parseInt(deleteLabel.getText()) - 1;
+                String expense = jlist.getSelectedValue().toString();
+                expenseList.removeExpense(jlist.getSelectedValue());
+                this.refresh(expenseList.getAllExpenses());
+                showExpensesPanel.refresh(expenseList.getAllExpenses());
+                showExpensesFromCategoryPanel.refresh(expenseList.getAllExpenses());
+                showExpensesFromMonthPanel.refresh(expenseList.getAllExpenses());
+            });
+
+            this.add(deleteButton);
+        }
+    }
+
+    class HomePagePanel extends HomePagePanelNoSaveQuit {
+        private JButton save;
+        private JButton quit;
+        public HomePagePanel(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
+            super(width, height, cards, cardLayoutPanel);
+
+            save = new JButton("save file");
+            quit = new JButton("quit");
+
+            save.setBounds(40, 650, 100, 50);
+            quit.setBounds(280, 650, 100, 50);
+
+            save.addActionListener(e -> {
+                saveFile();
+                // might need to refresh here
+            });
+            quit.addActionListener(e -> {
+                // popup box ask for save or not
+                saveFile();
+                frame.dispose();
+            });
+
+            this.add(save);
+            this.add(quit);
+        }
+    }
     // MODIFIES: this
     // EFFECTS: processes user input
     private void runEasyMoney() {
@@ -332,10 +387,9 @@ public class EasyMoneyAppGUI extends JFrame {
         showExpensesPanel = new ShowExpensesPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
         showExpensesFromCategoryPanel = new ShowExpensesFromCategoryPanel(WIDTH, HEIGHT,
                 expenseList, cards, cardLayoutPanel);
-        showExpensesFromMonthPanel = new ShowExpensesFromMonthPanel(WIDTH, HEIGHT,
-                expenseList, cards, cardLayoutPanel);
-        addExpensePanel = new AddExpensePanel(WIDTH, HEIGHT,
-                expenseList, cards, cardLayoutPanel);
+        showExpensesFromMonthPanel = new ShowExpensesFromMonthPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
+        addExpensePanel = new AddExpensePanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
+        deleteExpensePanel = new DeleteExpensePanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
     }
 }
 

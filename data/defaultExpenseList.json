@@ -1,5 +1,11 @@
 {"expenses": [
     {
+        "date": "04:20 Jan 01, 2021",
+        "amount": 420,
+        "description": "Cannabis store",
+        "category": "Groceries"
+    },
+    {
         "date": "11:59 Jan 11, 2021",
         "amount": 24,
         "description": "Kinton Ramen",

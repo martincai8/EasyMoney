@@ -5,10 +5,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class HomePagePanel extends JPanel {
+public class HomePagePanelNoSaveQuit extends JPanel {
     private int width;
     private int height;
     private JButton allExpenses;
@@ -19,7 +17,7 @@ public class HomePagePanel extends JPanel {
     private CardLayout cards;
     private JPanel cardLayoutPanel;
 
-    public HomePagePanel(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
+    public HomePagePanelNoSaveQuit(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
         this.width = width;
         this.height = height;
         this.cards = cards;
@@ -37,7 +35,7 @@ public class HomePagePanel extends JPanel {
     private void addItems() {
         addWelcomeText();
         addMenuButtons();
-        addBottomButtons();
+//        addBottomButtons();
     }
 
     // the code from lines 7-10 of this method are from https://bit.ly/3DfykyB
@@ -73,7 +71,7 @@ public class HomePagePanel extends JPanel {
         allExpensesFromCat.addActionListener(e -> cards.show(cardLayoutPanel, "expenses from category"));
         allExpensesFromMonth.addActionListener(e -> cards.show(cardLayoutPanel, "expenses from month"));
         addExpense.addActionListener(e -> cards.show(cardLayoutPanel, "add expense"));
-//        deleteExpense.addActionListener(e -> cards.show(cardLayoutPanel, "delete expense"));
+        deleteExpense.addActionListener(e -> cards.show(cardLayoutPanel, "delete expense"));
 
         this.add(allExpenses);
         this.add(allExpensesFromCat);
@@ -82,14 +80,14 @@ public class HomePagePanel extends JPanel {
         this.add(deleteExpense);
     }
 
-    private void addBottomButtons() {
-        JButton saveFile = new JButton("save file");
-        JButton quit = new JButton("quit");
-
-        saveFile.setBounds(40, 650, 100, 50);
-        quit.setBounds(280, 650, 100, 50);
-
-        this.add(saveFile);
-        this.add(quit);
-    }
+//    private void addBottomButtons() {
+//        JButton saveFile = new JButton("save file");
+//        JButton quit = new JButton("quit");
+//
+//        saveFile.setBounds(40, 650, 100, 50);
+//        quit.setBounds(280, 650, 100, 50);
+//
+//        this.add(saveFile);
+//        this.add(quit);
+//    }
 }
