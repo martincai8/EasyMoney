@@ -25,7 +25,7 @@ import java.util.List;
 //EasyMoney application
 //This class references code from https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class EasyMoneyAppGUI extends JFrame {
-    public static final int WIDTH = 400;
+    public static final int WIDTH = 440;
     public static final int HEIGHT = 800;
 
     private static final String DIRECTORY = "./data/defaultExpenseList.json";
@@ -39,9 +39,10 @@ public class EasyMoneyAppGUI extends JFrame {
     private JPanel cardLayoutPanel;
     private JPanel startUpPanel;
     private JPanel homePagePanel;
-    private JPanel showExpensesPanel;
-    private JPanel showExpensesFromCategoryPanel;
-    private JPanel showExpensesFromMonthPanel;
+    private ShowExpensesPanel showExpensesPanel;
+    private ShowExpensesFromCategoryPanel showExpensesFromCategoryPanel;
+    private ShowExpensesFromMonthPanel showExpensesFromMonthPanel;
+    private AddExpensePanel addExpensePanel;
 
     private JButton start;
     private JButton allExpenses;
@@ -51,6 +52,7 @@ public class EasyMoneyAppGUI extends JFrame {
     private JButton deleteExpense;
     private JButton saveFile;
     private JButton quit;
+    private JButton submit;
 
     private CardLayout cards;
 
@@ -69,8 +71,9 @@ public class EasyMoneyAppGUI extends JFrame {
         cardLayoutPanel.add(showExpensesPanel, "all expenses");
         cardLayoutPanel.add(showExpensesFromCategoryPanel, "expenses from category");
         cardLayoutPanel.add(showExpensesFromMonthPanel, "expenses from month");
+        cardLayoutPanel.add(addExpensePanel, "add expense");
 
-        cards.show(cardLayoutPanel, "start up page");
+        cards.show(cardLayoutPanel, "add expense");
         frame.add(cardLayoutPanel);
 
 //        String text = "";
@@ -78,34 +81,32 @@ public class EasyMoneyAppGUI extends JFrame {
         frame.setVisible(true);
     }
 
-//    class ShowExpensesPanel extends JPanel {
-//        public ShowExpensesPanel(int width, int height) {
-//            this.setBackground(Color.WHITE);
-//
-//            jList = new JList<>();
-//            model = new DefaultListModel<>();
-//
-//            loadFile();
-//            List<Expense> expenses = expenseList.getAllExpenses();
-//
-//            for (Expense e : expenses) {
-//                model.addElement(e);
-//                model.addElement(e);
-//                model.addElement(e);
-//                model.addElement(e);
-//            }
-//            jList.setModel(model);
-//            jList.setSelectedIndex(0);
-//
-//            JScrollPane scroll = new JScrollPane(jList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-//                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//            scroll.setPreferredSize(new Dimension((int) (width * 0.95), (int) (height * 0.7)));
-//
-//            this.add(scroll);
-//            this.setBounds((int) (width * 0.025), (int) (height * 0.05), (int) (width * 0.95), (int) (height * 0.9));
-//            this.setBorder(BorderFactory.createEmptyBorder());
-//        }
-//    }
+    class AddExpensePanel extends AddExpensePanelNoSubmit {
+        public AddExpensePanel(int width, int height, ExpenseList expenseList2,
+                               CardLayout cards, JPanel cardLayoutPanel) {
+            super(width, height, expenseList2, cards, cardLayoutPanel);
+            this.submit = new JButton("submit");
+            this.submit.setBounds(160, 600, 100, 50);
+            this.submit.addActionListener(e -> {
+                Double dollarValue = Double.parseDouble(dollarField.getText());
+                String descriptionValue = (String) descriptionField.getText();
+                String categoryValue = (String) selectCategory.getSelectedItem();
+                String timeValue = (String) timeField.getText();
+                String monthValue = selectMonth.getSelectedItem().toString();
+                Integer dayValue = (int) selectDay.getSelectedIndex() + 1;
+                Integer yearValue = Integer.parseInt(yearField.getText());
+                String dateStr = timeValue + " " + monthValue + " " + dayValue + ", " + yearValue;
+                LocalDateTime date = stringToDate(dateStr, dayValue);
+                Expense newExpense = new Expense(dollarValue, descriptionValue, categoryValue, date);
+                expenseList.addExpense(newExpense);
+                showExpensesPanel.refresh(expenseList.getAllExpenses());
+                showExpensesFromCategoryPanel.refresh(expenseList.getAllExpenses());
+                showExpensesFromMonthPanel.refresh(expenseList.getAllExpenses());
+                displayExpenses(expenseList.getAllExpenses());
+            });
+            this.add(submit);
+        }
+    }
 
     // MODIFIES: this
     // EFFECTS: processes user input
@@ -332,6 +333,8 @@ public class EasyMoneyAppGUI extends JFrame {
         showExpensesFromCategoryPanel = new ShowExpensesFromCategoryPanel(WIDTH, HEIGHT,
                 expenseList, cards, cardLayoutPanel);
         showExpensesFromMonthPanel = new ShowExpensesFromMonthPanel(WIDTH, HEIGHT,
+                expenseList, cards, cardLayoutPanel);
+        addExpensePanel = new AddExpensePanel(WIDTH, HEIGHT,
                 expenseList, cards, cardLayoutPanel);
     }
 }

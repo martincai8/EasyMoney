@@ -63,16 +63,16 @@ public class HomePagePanel extends JPanel {
         addExpense = new JButton("add new expense");
         deleteExpense = new JButton("delete existing expense");
 
-        allExpenses.setBounds(60, 180, 250, 50);
-        allExpensesFromCat.setBounds(60, 250, 250, 50);
-        allExpensesFromMonth.setBounds(60, 320, 250, 50);
-        addExpense.setBounds(60, 390, 250, 50);
-        deleteExpense.setBounds(60, 460, 250, 50);
+        allExpenses.setBounds(80, 180, 250, 50);
+        allExpensesFromCat.setBounds(80, 250, 250, 50);
+        allExpensesFromMonth.setBounds(80, 320, 250, 50);
+        addExpense.setBounds(80, 390, 250, 50);
+        deleteExpense.setBounds(80, 460, 250, 50);
 
         allExpenses.addActionListener(e -> cards.show(cardLayoutPanel, "all expenses"));
         allExpensesFromCat.addActionListener(e -> cards.show(cardLayoutPanel, "expenses from category"));
         allExpensesFromMonth.addActionListener(e -> cards.show(cardLayoutPanel, "expenses from month"));
-//        addExpense.addActionListener(e -> cards.show(cardLayoutPanel, "add expense"));
+        addExpense.addActionListener(e -> cards.show(cardLayoutPanel, "add expense"));
 //        deleteExpense.addActionListener(e -> cards.show(cardLayoutPanel, "delete expense"));
 
         this.add(allExpenses);
@@ -86,8 +86,8 @@ public class HomePagePanel extends JPanel {
         JButton saveFile = new JButton("save file");
         JButton quit = new JButton("quit");
 
-        saveFile.setBounds(20, 650, 100, 50);
-        quit.setBounds(260, 650, 100, 50);
+        saveFile.setBounds(40, 650, 100, 50);
+        quit.setBounds(280, 650, 100, 50);
 
         this.add(saveFile);
         this.add(quit);

@@ -15,14 +15,9 @@ public class StartUpPanel extends JPanel {
         this.setLayout(null);
 
         start = new JButton("Start");
-        start.setBounds(140, 500, 100, 50);
+        start.setBounds(160, 500, 100, 50);
 
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cards.show(cardLayoutPanel, "home page");
-            }
-        });
+        start.addActionListener(e -> cards.show(cardLayoutPanel, "home page"));
         this.add(start);
     }
 }

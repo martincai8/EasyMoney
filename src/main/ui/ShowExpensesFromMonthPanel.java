@@ -24,7 +24,7 @@ public class ShowExpensesFromMonthPanel extends ShowExpensesPanel {
         super(width, height, expenseList, cards, cardLayoutPanel);
 
         text = new JLabel("Select a month: ");
-        text.setBounds(20, 580, 120, 40);
+        text.setBounds(42, 578, 120, 40);
 
         selectMonth = new JComboBox();
 
@@ -35,11 +35,11 @@ public class ShowExpensesFromMonthPanel extends ShowExpensesPanel {
             selectMonth.addItem(months.get(i));
         }
 
-        selectMonth.setBounds(140, 580, 120, 40);
+        selectMonth.setBounds(153, 580, 120, 40);
         selectMonth.setForeground(Color.BLUE);
 
         submit = new JButton("submit");
-        submit.setBounds(270, 580, 80, 40);
+        submit.setBounds(288, 580, 80, 40);
 
         addActions(expenseList);
 
@@ -50,14 +50,11 @@ public class ShowExpensesFromMonthPanel extends ShowExpensesPanel {
 
     private void addActions(ExpenseList expenseList) {
         selectMonth.addActionListener(e -> System.out.println(selectMonth.getSelectedItem()));
-        submit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                expenses = expenseList.getExpensesFromMonth(selectMonth.getSelectedIndex() + 1);
-                model.clear();
-                loadList();
+        submit.addActionListener(e -> {
+            expenses = expenseList.getExpensesFromMonth(selectMonth.getSelectedIndex() + 1);
+            model.clear();
+            loadList();
 
-            }
         });
     }
 }

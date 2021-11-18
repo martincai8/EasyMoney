@@ -29,7 +29,7 @@ public class ShowExpensesPanel extends JPanel {
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         this.home = new JButton("home");
 
-        home.setBounds(140, 650, 100, 50);
+        home.setBounds(160, 650, 100, 50);
         home.addActionListener(e -> cards.show(cardLayoutPanel, "home page"));
 
         loadList();
@@ -45,6 +45,13 @@ public class ShowExpensesPanel extends JPanel {
 
     public void loadList() {
         for (Expense e : expenses) {
+            model.addElement(e);
+        }
+    }
+
+    public void refresh(List<Expense> newExpenses) {
+        model.clear();
+        for (Expense e : newExpenses) {
             model.addElement(e);
         }
     }
