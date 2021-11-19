@@ -36,6 +36,12 @@
         "category": "Groceries"
     },
     {
+        "date": "10:10 Jun 07, 2021",
+        "amount": 20,
+        "description": "test",
+        "category": "Shopping"
+    },
+    {
         "date": "19:13 Oct 05, 2021",
         "amount": 25.3,
         "description": "Superstore",
