@@ -125,17 +125,21 @@ public class EasyMoneyAppGUI extends JFrame {
 
     class StartUpPanel extends StartUpPanelNoStartButton {
         private JButton start;
+        private ImageIcon saveIcon;
 
         public StartUpPanel(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, cards, cardLayoutPanel);
 
             this.start = new JButton("start");
-            this.start.setBounds(160, 500, 100, 50);
+            this.start.setBounds(160, 550, 100, 50);
             this.start.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+            this.saveIcon = new ImageIcon(new ImageIcon("./data/save icon.png").getImage().getScaledInstance(
+                    30, 30, Image.SCALE_DEFAULT));
 
             this.start.addActionListener(e -> {
                 int option = JOptionPane.showConfirmDialog(frame, "do you want to load your data?",
-                        "", JOptionPane.YES_NO_OPTION);
+                        "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, saveIcon);
                 if (option == 0) {
                     loadFile();
                 }
@@ -149,12 +153,15 @@ public class EasyMoneyAppGUI extends JFrame {
     class HomePagePanel extends HomePagePanelNoSaveQuit {
         private JButton save;
         private JButton quit;
+        private ImageIcon saveIcon;
 
         public HomePagePanel(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, cards, cardLayoutPanel);
 
             this.save = new JButton("save file");
             this.quit = new JButton("quit");
+            this.saveIcon = new ImageIcon(new ImageIcon("./data/save icon.png").getImage().getScaledInstance(
+                    30, 30, Image.SCALE_DEFAULT));
 
             setBounds();
             addActions();
@@ -169,7 +176,7 @@ public class EasyMoneyAppGUI extends JFrame {
             });
             this.quit.addActionListener(e -> {
                 int option = JOptionPane.showConfirmDialog(frame, "do you want to overwrite your saved data?",
-                        "", JOptionPane.YES_NO_OPTION);
+                        "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, this.saveIcon);
                 if (option == 0) {
                     saveFile();
                 }
@@ -180,6 +187,7 @@ public class EasyMoneyAppGUI extends JFrame {
         private void setBounds() {
             this.save.setBounds(40, 650, 100, 50);
             this.quit.setBounds(280, 650, 100, 50);
+
             this.save.setFont(new Font("Monospaced", Font.PLAIN, 12));
             this.quit.setFont(new Font("Monospaced", Font.PLAIN, 12));
         }

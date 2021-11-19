@@ -48,8 +48,6 @@ public class ShowExpensesFromMonthPanel extends ShowExpensesPanel {
     }
 
     private void addActions(ExpenseList expenseList) {
-        System.out.println(expenseList.getAllExpenses());
-        selectMonth.addActionListener(e -> System.out.println(selectMonth.getSelectedItem()));
         submit.addActionListener(e -> {
             expenses = expenseList.getExpensesFromMonth(selectMonth.getSelectedIndex() + 1);
             model.clear();

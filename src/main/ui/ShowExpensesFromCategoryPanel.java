@@ -41,7 +41,6 @@ public class ShowExpensesFromCategoryPanel extends ShowExpensesPanel {
     }
 
     private void addActions(ExpenseList expenseList) {
-        selectCategory.addActionListener(e -> System.out.println(selectCategory.getSelectedItem()));
         submit.addActionListener(e -> {
             expenses = expenseList.getExpensesFromCategory(selectCategory.getSelectedItem().toString());
             model.clear();
