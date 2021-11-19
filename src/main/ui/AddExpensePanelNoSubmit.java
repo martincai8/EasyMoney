@@ -184,7 +184,7 @@ public class AddExpensePanelNoSubmit extends JPanel {
         this.selectCategory.setBounds(140, 315, 140, 30);
         this.timeField.setBounds(185, 465, 50, 30);
         this.selectMonth.setBounds(60, 545, 90, 30);
-        this.selectDay.setBounds(180, 545, 60, 30);
+        this.selectDay.setBounds(175, 545, 70, 30);
         this.yearField.setBounds(295, 545, 40, 30);
     }
 
@@ -223,31 +223,4 @@ public class AddExpensePanelNoSubmit extends JPanel {
         }
         return LocalDateTime.parse(dateStr, format);
     }
-
-//    public JButton getSubmit() {
-//        return submit;
-//    }
-
-//    public void submitSetAction(ExpenseList expenseList) {
-//        this.submit.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Double dollarValue = Double.parseDouble(dollarField.getText());
-//                String descriptionValue = (String) descriptionField.getText();
-//                String categoryValue = (String) selectCategory.getSelectedItem();
-//                String timeValue = (String) timeField.getText();
-//                String monthValue = selectMonth.getSelectedItem().toString();
-//                Integer dayValue = (int) selectDay.getSelectedIndex() + 1;
-//                Integer yearValue = Integer.parseInt(yearField.getText());
-//                String dateStr = timeValue + " " + monthValue.toString() + " " + dayValue.toString() + ", "
-//                        +
-//                        yearValue.toString();
-//                LocalDateTime date = stringToDate(dateStr, dayValue);
-//                Expense newExpense = new Expense(dollarValue, descriptionValue, categoryValue, date);
-//                expenseList.addExpense(newExpense); //FIX
-//                System.out.println("Added expense");
-//                System.out.println(newExpense);
-//            }
-//        });
-//    }
 }

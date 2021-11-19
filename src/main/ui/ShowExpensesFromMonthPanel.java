@@ -5,12 +5,8 @@ import model.ExpenseList;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class ShowExpensesFromMonthPanel extends ShowExpensesPanel {
     private JLabel text;
@@ -52,6 +48,7 @@ public class ShowExpensesFromMonthPanel extends ShowExpensesPanel {
     }
 
     private void addActions(ExpenseList expenseList) {
+        System.out.println(expenseList.getAllExpenses());
         selectMonth.addActionListener(e -> System.out.println(selectMonth.getSelectedItem()));
         submit.addActionListener(e -> {
             expenses = expenseList.getExpensesFromMonth(selectMonth.getSelectedIndex() + 1);

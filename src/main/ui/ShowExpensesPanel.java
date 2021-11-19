@@ -30,7 +30,7 @@ public class ShowExpensesPanel extends JPanel {
         this.home = new JButton("home");
         this.home.setBounds(160, 650, 100, 50);
         this.home.setFont(new Font("Monospaced", Font.PLAIN, 14));
-        home.addActionListener(e -> cards.show(cardLayoutPanel, "home page"));
+        this.home.addActionListener(e -> cards.show(cardLayoutPanel, "home page"));
 
         loadList();
 
@@ -55,5 +55,9 @@ public class ShowExpensesPanel extends JPanel {
         for (Expense e : newExpenses) {
             model.addElement(e);
         }
+    }
+
+    public void setExpenses(List<Expense> newExpenses) {
+        this.expenses = newExpenses;
     }
 }

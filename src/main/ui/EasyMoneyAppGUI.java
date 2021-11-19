@@ -34,10 +34,10 @@ public class EasyMoneyAppGUI extends JFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    private JFrame frame;
+    private Frame frame;
     private JPanel titlePanel;
     private JPanel cardLayoutPanel;
-    private JPanel startUpPanel;
+    private StartUpPanel startUpPanel;
     private JPanel homePagePanel;
     private ShowExpensesPanel showExpensesPanel;
     private ShowExpensesFromCategoryPanel showExpensesFromCategoryPanel;
@@ -68,12 +68,12 @@ public class EasyMoneyAppGUI extends JFrame {
         frame.add(titlePanel);
         cardLayoutPanel.setLayout(cards);
         cardLayoutPanel.add(startUpPanel, "start up page");
-        cardLayoutPanel.add(homePagePanel, "home page");
-        cardLayoutPanel.add(showExpensesPanel, "all expenses");
-        cardLayoutPanel.add(showExpensesFromCategoryPanel, "expenses from category");
-        cardLayoutPanel.add(showExpensesFromMonthPanel, "expenses from month");
-        cardLayoutPanel.add(addExpensePanel, "add expense");
-        cardLayoutPanel.add(deleteExpensePanel, "delete expense");
+//        cardLayoutPanel.add(homePagePanel, "home page");
+//        cardLayoutPanel.add(showExpensesPanel, "all expenses");
+//        cardLayoutPanel.add(showExpensesFromCategoryPanel, "expenses from category");
+//        cardLayoutPanel.add(showExpensesFromMonthPanel, "expenses from month");
+//        cardLayoutPanel.add(addExpensePanel, "add expense");
+//        cardLayoutPanel.add(deleteExpensePanel, "delete expense");
 
         cards.show(cardLayoutPanel, "start up page");
         frame.add(cardLayoutPanel);
@@ -87,7 +87,7 @@ public class EasyMoneyAppGUI extends JFrame {
         public AddExpensePanel(int width, int height, ExpenseList expenseList2,
                                CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, expenseList2, cards, cardLayoutPanel);
-            this.submit = new JButton("submit");
+            this.submit = new JButton("add expense");
             this.submit.setBounds(160, 600, 100, 50);
             this.submit.setFont(new Font("Monospaced", Font.PLAIN, 12));
             this.submit.addActionListener(e -> {
@@ -140,7 +140,6 @@ public class EasyMoneyAppGUI extends JFrame {
             this.deleteButton.setBounds(160, 600, 100, 50);
             this.deleteButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
             this.deleteButton.addActionListener(e -> {
-//                rowNumToDelete = Integer.parseInt(deleteLabel.getText()) - 1;
                 String expense = jlist.getSelectedValue().toString();
                 expenseList.removeExpense(jlist.getSelectedValue());
                 this.refresh(expenseList.getAllExpenses());
@@ -153,6 +152,33 @@ public class EasyMoneyAppGUI extends JFrame {
         }
     }
 
+    class StartUpPanel extends StartUpPanelNoStartButton {
+        private JButton start;
+
+        public StartUpPanel(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
+            super(width, height, cards, cardLayoutPanel);
+
+            this.start = new JButton("start");
+            this.start.setBounds(160, 500, 100, 50);
+            this.start.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+            this.start.addActionListener(e -> {
+                int option = JOptionPane.showConfirmDialog(frame, "do you want to load your data?",
+                        "", JOptionPane.YES_NO_OPTION);
+                if (option == 0) {
+                    loadFile();
+                    System.out.println("loaded file");
+                }
+                initOtherPanels();
+                cards.show(cardLayoutPanel, "home page");
+            });
+            this.add(start);
+        }
+
+//        public void askLoad() {
+//
+//        }
+    }
     class HomePagePanel extends HomePagePanelNoSaveQuit {
         private JButton save;
         private JButton quit;
@@ -160,59 +186,42 @@ public class EasyMoneyAppGUI extends JFrame {
         public HomePagePanel(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, cards, cardLayoutPanel);
 
-            save = new JButton("save file");
-            quit = new JButton("quit");
+            this.save = new JButton("save file");
+            this.quit = new JButton("quit");
 
-            save.setBounds(40, 650, 100, 50);
-            quit.setBounds(280, 650, 100, 50);
-            save.setFont(new Font("Monospaced", Font.PLAIN, 12));
-            quit.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            setBounds();
 
-            save.addActionListener(e -> {
+            addActions();
+
+            this.add(this.save);
+            this.add(this.quit);
+        }
+
+        private void addActions() {
+            this.save.addActionListener(e -> {
                 saveFile();
                 // might need to refresh here
             });
-            quit.addActionListener(e -> {
-                // popup box ask for save or not
-                saveFile();
+            this.quit.addActionListener(e -> {
+                int option = JOptionPane.showConfirmDialog(frame, "do you want to overwrite your saved data?",
+                        "", JOptionPane.YES_NO_OPTION);
+                if (option == 0) {
+                    saveFile();
+                }
                 frame.dispose();
             });
-
-            this.add(save);
-            this.add(quit);
         }
+
+        private void setBounds() {
+            this.save.setBounds(40, 650, 100, 50);
+            this.quit.setBounds(280, 650, 100, 50);
+//            this.load.setBounds(160, 650, 100, 50);
+            this.save.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            this.quit.setFont(new Font("Monospaced", Font.PLAIN, 12));
+//            this.load.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        }
+
     }
-    // MODIFIES: this
-    // EFFECTS: processes user input
-//    private void runEasyMoney() {
-//        boolean keepGoing = true;
-//        String option;
-//        String save;
-//
-//        init();
-//        displayWelcome();
-//        loadFile();
-//
-//        while (keepGoing) {
-//            displayMenu();
-//            System.out.print("Command: ");
-//            option = input.next().toLowerCase();
-//
-//            if (option.equals("q")) {
-//                System.out.print("Would you like to save your current expenses? y/n ");
-//                save = input.next();
-//                if (save.equals("y")) {
-//                    saveFile();
-//                }
-//                System.out.println("Thank you for using EasyMoney, have a great day!");
-//                keepGoing = false;
-//            } else {
-//                processOption(option);
-//            }
-//            System.out.print("\n");
-//
-//        }
-//    }
 
     //EFFECTS: saves expenses to file
     private void saveFile() {
@@ -229,9 +238,8 @@ public class EasyMoneyAppGUI extends JFrame {
     //MODIFIES: this
     //EFFECTS: loads expenses from file
     private void loadFile() {
-
         try {
-            expenseList = jsonReader.read();
+            this.expenseList = jsonReader.read();
             System.out.println("Loaded expenses from " + DIRECTORY);
         } catch (IOException e) {
             System.out.println("Unable to read from file");
@@ -395,13 +403,29 @@ public class EasyMoneyAppGUI extends JFrame {
         jsonWriter = new JsonWriter(DIRECTORY);
         jsonReader = new JsonReader(DIRECTORY);
 
-        loadFile();
-
         cards = new CardLayout();
         frame = new Frame(WIDTH, HEIGHT);
         titlePanel = new TitlePanel(WIDTH, HEIGHT);
         cardLayoutPanel = new CardLayoutPanel(WIDTH, HEIGHT);
         startUpPanel = new StartUpPanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
+
+//        loadFile();
+
+//        cards = new CardLayout();
+//        frame = new Frame(WIDTH, HEIGHT);
+//        titlePanel = new TitlePanel(WIDTH, HEIGHT);
+//        cardLayoutPanel = new CardLayoutPanel(WIDTH, HEIGHT);
+//        startUpPanel = new StartUpPanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
+//        homePagePanel = new HomePagePanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
+//        showExpensesPanel = new ShowExpensesPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
+//        showExpensesFromCategoryPanel = new ShowExpensesFromCategoryPanel(WIDTH, HEIGHT,
+//                expenseList, cards, cardLayoutPanel);
+//        showExpensesFromMonthPanel = new ShowExpensesFromMonthPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
+//        addExpensePanel = new AddExpensePanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
+//        deleteExpensePanel = new DeleteExpensePanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
+    }
+
+    private void initOtherPanels() {
         homePagePanel = new HomePagePanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
         showExpensesPanel = new ShowExpensesPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
         showExpensesFromCategoryPanel = new ShowExpensesFromCategoryPanel(WIDTH, HEIGHT,
@@ -409,6 +433,13 @@ public class EasyMoneyAppGUI extends JFrame {
         showExpensesFromMonthPanel = new ShowExpensesFromMonthPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
         addExpensePanel = new AddExpensePanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
         deleteExpensePanel = new DeleteExpensePanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
+
+        cardLayoutPanel.add(homePagePanel, "home page");
+        cardLayoutPanel.add(showExpensesPanel, "all expenses");
+        cardLayoutPanel.add(showExpensesFromCategoryPanel, "expenses from category");
+        cardLayoutPanel.add(showExpensesFromMonthPanel, "expenses from month");
+        cardLayoutPanel.add(addExpensePanel, "add expense");
+        cardLayoutPanel.add(deleteExpensePanel, "delete expense");
     }
 }
 
