@@ -78,8 +78,6 @@ public class EasyMoneyAppGUI extends JFrame {
         cards.show(cardLayoutPanel, "start up page");
         frame.add(cardLayoutPanel);
 
-//        String text = "";
-//        drawTextArea(text);
         frame.setVisible(true);
     }
 
@@ -179,6 +177,7 @@ public class EasyMoneyAppGUI extends JFrame {
 //
 //        }
     }
+
     class HomePagePanel extends HomePagePanelNoSaveQuit {
         private JButton save;
         private JButton quit;
@@ -408,21 +407,6 @@ public class EasyMoneyAppGUI extends JFrame {
         titlePanel = new TitlePanel(WIDTH, HEIGHT);
         cardLayoutPanel = new CardLayoutPanel(WIDTH, HEIGHT);
         startUpPanel = new StartUpPanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
-
-//        loadFile();
-
-//        cards = new CardLayout();
-//        frame = new Frame(WIDTH, HEIGHT);
-//        titlePanel = new TitlePanel(WIDTH, HEIGHT);
-//        cardLayoutPanel = new CardLayoutPanel(WIDTH, HEIGHT);
-//        startUpPanel = new StartUpPanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
-//        homePagePanel = new HomePagePanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
-//        showExpensesPanel = new ShowExpensesPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
-//        showExpensesFromCategoryPanel = new ShowExpensesFromCategoryPanel(WIDTH, HEIGHT,
-//                expenseList, cards, cardLayoutPanel);
-//        showExpensesFromMonthPanel = new ShowExpensesFromMonthPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
-//        addExpensePanel = new AddExpensePanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
-//        deleteExpensePanel = new DeleteExpensePanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);
     }
 
     private void initOtherPanels() {
