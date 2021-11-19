@@ -5,9 +5,9 @@ import model.ExpenseList;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
+// Represents a ShowExpensesPanel
 public class ShowExpensesPanel extends JPanel {
     protected JList<Expense> jlist;
     protected DefaultListModel<Expense> model;
@@ -15,6 +15,7 @@ public class ShowExpensesPanel extends JPanel {
     protected JScrollPane scroll;
     protected JButton home;
 
+    // Constructs a ShowExpensePanel
     public ShowExpensesPanel(int width, int height, ExpenseList expenseList,
                              CardLayout cards, JPanel cardLayoutPanel) {
         this.setBackground(Color.WHITE);
@@ -44,20 +45,20 @@ public class ShowExpensesPanel extends JPanel {
 
     }
 
+    // MODIFIES: model
+    // EFFECTS: populates the model with expenses
     public void loadList() {
         for (Expense e : expenses) {
             model.addElement(e);
         }
     }
 
+    // MODIFIES: model
+    // EFFECTS: resets and populates the model with new expenses (after filtering)
     public void refresh(List<Expense> newExpenses) {
         model.clear();
         for (Expense e : newExpenses) {
             model.addElement(e);
         }
-    }
-
-    public void setExpenses(List<Expense> newExpenses) {
-        this.expenses = newExpenses;
     }
 }

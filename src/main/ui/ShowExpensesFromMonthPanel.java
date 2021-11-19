@@ -8,6 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//Represents a ShowExpensesFromMonthPanel
 public class ShowExpensesFromMonthPanel extends ShowExpensesPanel {
     private JLabel text;
     private JButton submit;
@@ -15,6 +16,7 @@ public class ShowExpensesFromMonthPanel extends ShowExpensesPanel {
     private ArrayList<String> months;
     private String month;
 
+    //Constructs a ShowExpensesFromMonthPanel
     public ShowExpensesFromMonthPanel(int width, int height, ExpenseList expenseList, CardLayout cards,
                                          JPanel cardLayoutPanel) {
         super(width, height, expenseList, cards, cardLayoutPanel);
@@ -47,8 +49,10 @@ public class ShowExpensesFromMonthPanel extends ShowExpensesPanel {
         this.add(selectMonth);
     }
 
+    // MODIFIES: submit
+    // EFFECTS: upon button press, show only the expenses that belong to the selected month
     private void addActions(ExpenseList expenseList) {
-        submit.addActionListener(e -> {
+        this.submit.addActionListener(e -> {
             expenses = expenseList.getExpensesFromMonth(selectMonth.getSelectedIndex() + 1);
             model.clear();
             loadList();

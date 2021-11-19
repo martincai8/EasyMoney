@@ -5,20 +5,11 @@ import model.ExpenseList;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
 
+// Represents the AddExpensePanel without its submit button
 public class AddExpensePanelNoSubmit extends JPanel {
-    private int width;
-    private int height;
-    private ExpenseList expenseList;
-    private CardLayout cards;
-    private CardLayoutPanel cardLayoutPanel;
-
     private JLabel dollarSign;
     private JLabel dollarAmount;
     private JLabel description;
@@ -39,9 +30,9 @@ public class AddExpensePanelNoSubmit extends JPanel {
     protected JButton submit;
     protected JButton home;
 
+    // EFFECT: Constructs the panel with its labels and fields
     public AddExpensePanelNoSubmit(int width, int height, ExpenseList expenseList,
                            CardLayout cards, JPanel cardLayoutPanel) {
-//        setUpFields();
         this.setBackground(Color.WHITE);
         this.setBounds((int) (width * 0.025), (int) (height * 0.05), (int) (width * 0.95), (int) (height * 0.9));
         this.setBorder(BorderFactory.createEmptyBorder());
@@ -61,14 +52,8 @@ public class AddExpensePanelNoSubmit extends JPanel {
         addToPanel();
     }
 
-//    private void setUpFields() {
-//        this.width = width;
-//        this.height = height;
-//        this.expenseList = expenseList;
-//        this.cards = cards;
-//        this.cardLayoutPanel = cardLayoutPanel;
-//    }
-
+    // MODIFIES: dollarSign, dollarAmount, description, category, date, time, month, day, year
+    // EFFECTS: adds text to the labels and sets their alignment + font
     private void setUpLabels() {
         this.dollarSign = new JLabel("$");
         this.dollarAmount = new JLabel("dollar amount");
@@ -93,6 +78,8 @@ public class AddExpensePanelNoSubmit extends JPanel {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: centers the text of the labels horizontally
     private void setHorizontalAlignment() {
         this.dollarSign.setHorizontalAlignment(JLabel.CENTER);
         this.dollarAmount.setHorizontalAlignment(JLabel.CENTER);
@@ -105,6 +92,8 @@ public class AddExpensePanelNoSubmit extends JPanel {
         this.year.setHorizontalAlignment(JLabel.CENTER);
     }
 
+    // MODIFIES: dollarSign, dollarAmount, description, category, date, time, month, day, year
+    // EFFECTS: sets the bounds of the labels
     private void labelsSetBounds() {
         this.dollarSign.setBounds(155, 75, 20, 30);
         this.dollarAmount.setBounds(140, 50, 140, 15);
@@ -117,6 +106,8 @@ public class AddExpensePanelNoSubmit extends JPanel {
         this.year.setBounds(245, 530, 140, 15);
     }
 
+    // MODIFIES: dollarField, descriptionField, selectCategory, timeField, selectMonth, selectDay, yearField
+    // EFFECTS: sets up the text fields and the selection boxes
     private void setUpInputs() {
         String[] categories = {"Groceries", "Movies", "Restaurants", "Shopping"};
         String[] months = {"Jan", "Feb", "Mar", "Apr", "May",
@@ -145,6 +136,8 @@ public class AddExpensePanelNoSubmit extends JPanel {
         setFontsForInputs();
     }
 
+    // MODIFIES: dollarField, descriptionField, selectCategory, timeField, selectMonth, selectDay, yearField
+    // EFFECTS: changes the default fonts of the inputs
     private void setFontsForInputs() {
         this.dollarField.setFont(new Font("Monospaced", Font.PLAIN, 14));
         this.descriptionField.setFont(new Font("Monospaced", Font.PLAIN, 14));
@@ -155,6 +148,8 @@ public class AddExpensePanelNoSubmit extends JPanel {
         this.yearField.setFont(new Font("Monospaced", Font.PLAIN, 14));
     }
 
+    // MODIFIES: dollarField, descriptionField, selectCategory, timeField, selectMonth, selectDay, yearField
+    // EFFECTS: ets the bounds of the inputs
     private void inputsSetBounds() {
         this.dollarField.setBounds(190, 75, 50, 30);
         this.descriptionField.setBounds(140, 205, 140, 30);
@@ -165,7 +160,8 @@ public class AddExpensePanelNoSubmit extends JPanel {
         this.yearField.setBounds(295, 545, 40, 30);
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: adds all the elements to the panel
     private void addToPanel() {
         this.add(dollarSign);
         this.add(dollarAmount);
@@ -191,7 +187,7 @@ public class AddExpensePanelNoSubmit extends JPanel {
 
     //REQUIRES: dateStr to be in the format "HH:mm MMM dd, yyyy" or "HH:mm MMM d, yyyy"
     //EFFECTS: returns a LocalDateTime object parsed from a string
-    public LocalDateTime stringToDate(String dateStr, String time, int day) {
+    public LocalDateTime stringToDate(String dateStr, int day) {
         DateTimeFormatter format;
         if (day <= 9) {
             format = DateTimeFormatter.ofPattern("HH:mm MMM d, yyyy");

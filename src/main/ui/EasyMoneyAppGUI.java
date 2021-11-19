@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.List;
 
-//EasyMoney application
+//EasyMoney application GUI
 //This class references code from https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class EasyMoneyAppGUI extends JFrame {
     public static final int WIDTH = 440;
@@ -39,11 +39,12 @@ public class EasyMoneyAppGUI extends JFrame {
 
     private CardLayout cards;
 
-    //EFFECTS: runs the EasyMoney application
+    // EFFECTS: runs the EasyMoneyAppGUI application
     public EasyMoneyAppGUI() throws FileNotFoundException {
         runApp();
     }
 
+    // EFFECTS: runs the EasyMoneyAppGUI
     private void runApp() {
         init();
 
@@ -57,7 +58,9 @@ public class EasyMoneyAppGUI extends JFrame {
         frame.setVisible(true);
     }
 
+    // Represents the AddExpensePanel
     class AddExpensePanel extends AddExpensePanelNoSubmit {
+        //Constructs an AddExpensePanel
         public AddExpensePanel(int width, int height, ExpenseList expenseList2,
                                CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, expenseList2, cards, cardLayoutPanel);
@@ -73,7 +76,7 @@ public class EasyMoneyAppGUI extends JFrame {
                 Integer dayValue = selectDay.getSelectedIndex() + 1;
                 Integer yearValue = Integer.parseInt(yearField.getText());
                 String dateStr = timeValue + " " + monthValue + " " + dayValue + ", " + yearValue;
-                LocalDateTime date = stringToDate(dateStr, timeValue, dayValue);
+                LocalDateTime date = stringToDate(dateStr, dayValue);
                 Expense newExpense = new Expense(dollarValue, descriptionValue, categoryValue, date);
                 expenseList.addExpense(newExpense);
                 showExpensesPanel.refresh(expenseList.getAllExpenses());
@@ -85,6 +88,8 @@ public class EasyMoneyAppGUI extends JFrame {
             this.add(submit);
         }
 
+        // MODIFIES: dollarField, descriptionField, timeField, yearField, selectCategory, selectMonth, selectDay
+        // EFFECTS: resets the values of all the inputs
         private void refreshPanel() {
             List<JFormattedTextField> fieldList = new ArrayList<>(Arrays.asList(
                     dollarField, descriptionField, timeField, yearField));
@@ -100,9 +105,11 @@ public class EasyMoneyAppGUI extends JFrame {
         }
     }
 
+    // Represents the DeleteExpensePanel
     class DeleteExpensePanel extends ShowExpensesPanel {
         private JButton deleteButton;
 
+        //Constructs a DeleteExpensePanel
         public DeleteExpensePanel(int width, int height, ExpenseList expenseList,
                                   CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, expenseList, cards, cardLayoutPanel);
@@ -123,10 +130,12 @@ public class EasyMoneyAppGUI extends JFrame {
         }
     }
 
+    //Represents a StartUpPanel
     class StartUpPanel extends StartUpPanelNoStartButton {
         private JButton start;
         private ImageIcon saveIcon;
 
+        //Constructs a StartUpPanel
         public StartUpPanel(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, cards, cardLayoutPanel);
 
@@ -134,6 +143,7 @@ public class EasyMoneyAppGUI extends JFrame {
             this.start.setBounds(160, 550, 100, 50);
             this.start.setFont(new Font("Monospaced", Font.PLAIN, 14));
 
+            //image source: https://www.pngfind.com/download/iiiRibm_png-file-save-icon-vector-png-transparent-png/
             this.saveIcon = new ImageIcon(new ImageIcon("./data/save icon.png").getImage().getScaledInstance(
                     30, 30, Image.SCALE_DEFAULT));
 
@@ -150,11 +160,13 @@ public class EasyMoneyAppGUI extends JFrame {
         }
     }
 
+    //Represents a HomePagePanel
     class HomePagePanel extends HomePagePanelNoSaveQuit {
         private JButton save;
         private JButton quit;
         private ImageIcon saveIcon;
 
+        //Constructs a HomePagePanel
         public HomePagePanel(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, cards, cardLayoutPanel);
 
@@ -163,13 +175,15 @@ public class EasyMoneyAppGUI extends JFrame {
             this.saveIcon = new ImageIcon(new ImageIcon("./data/save icon.png").getImage().getScaledInstance(
                     30, 30, Image.SCALE_DEFAULT));
 
-            setBounds();
+            setUp();
             addActions();
 
             this.add(this.save);
             this.add(this.quit);
         }
 
+        // MODIFIES: save, quit
+        // EFFECTS: adds Action Listeners and their corresponding actions
         private void addActions() {
             this.save.addActionListener(e -> {
                 saveFile();
@@ -184,7 +198,9 @@ public class EasyMoneyAppGUI extends JFrame {
             });
         }
 
-        private void setBounds() {
+        // MODIFIES: save, quit
+        // EFFECTS: sets the bounds and fonts of the buttons
+        private void setUp() {
             this.save.setBounds(40, 650, 100, 50);
             this.quit.setBounds(280, 650, 100, 50);
 
@@ -216,7 +232,7 @@ public class EasyMoneyAppGUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes expenseList and adds sample expenses
+    // EFFECTS: initializes cards, frame, titlePanel, cardLayoutPanel, startUpPanel
     private void init() {
         expenseList = new ExpenseList();
         jsonWriter = new JsonWriter(DIRECTORY);
@@ -229,6 +245,9 @@ public class EasyMoneyAppGUI extends JFrame {
         startUpPanel = new StartUpPanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes all the other panels and adds them to the cardLayoutPanel
+    // (had to separate into two inits because the file loading didn't work correctly)
     private void initOtherPanels() {
         homePagePanel = new HomePagePanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
         showExpensesPanel = new ShowExpensesPanel(WIDTH, HEIGHT, expenseList, cards, cardLayoutPanel);

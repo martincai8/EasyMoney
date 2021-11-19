@@ -4,16 +4,14 @@ import model.ExpenseList;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
 
+//Represents the panel that shows expenses from a specific category
 public class ShowExpensesFromCategoryPanel extends ShowExpensesPanel {
     private JButton submit;
     private JComboBox selectCategory;
     private JLabel text;
 
+    //Constructs a ShowExpensesFromCategoryPanel
     public ShowExpensesFromCategoryPanel(int width, int height, ExpenseList expenseList, CardLayout cards,
                                          JPanel cardLayoutPanel) {
         super(width, height, expenseList, cards, cardLayoutPanel);
@@ -40,8 +38,10 @@ public class ShowExpensesFromCategoryPanel extends ShowExpensesPanel {
         this.add(selectCategory);
     }
 
+    // MODIFIES: submit
+    // EFFECTS: upon button press, show only the expenses that belong to the selected category
     private void addActions(ExpenseList expenseList) {
-        submit.addActionListener(e -> {
+        this.submit.addActionListener(e -> {
             expenses = expenseList.getExpensesFromCategory(selectCategory.getSelectedItem().toString());
             model.clear();
             loadList();

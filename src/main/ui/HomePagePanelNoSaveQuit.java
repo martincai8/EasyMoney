@@ -6,6 +6,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
 
+//Represents the HomePagePanel without the save and quit buttons
 public class HomePagePanelNoSaveQuit extends JPanel {
     private int width;
     private int height;
@@ -17,6 +18,7 @@ public class HomePagePanelNoSaveQuit extends JPanel {
     private CardLayout cards;
     private JPanel cardLayoutPanel;
 
+    //Constructs a HomePagePanel without the save and quit buttons
     public HomePagePanelNoSaveQuit(int width, int height, CardLayout cards, JPanel cardLayoutPanel) {
         this.width = width;
         this.height = height;
@@ -32,12 +34,15 @@ public class HomePagePanelNoSaveQuit extends JPanel {
         addItems();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the welcome text and menu buttons to the panel
     private void addItems() {
         addWelcomeText();
         addMenuButtons();
-//        addBottomButtons();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the welcomeText label and adds it to the panel
     // the code from lines 7-10 of this method are from https://bit.ly/3DfykyB
     private void addWelcomeText() {
         JTextPane welcomeText = new JTextPane();
@@ -54,6 +59,8 @@ public class HomePagePanelNoSaveQuit extends JPanel {
         this.add(welcomeText);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the menu buttons and adds them to the panel
     private void addMenuButtons() {
         allExpenses = new JButton("view all expenses");
         allExpensesFromCat = new JButton("view all expenses from a category");
@@ -76,6 +83,8 @@ public class HomePagePanelNoSaveQuit extends JPanel {
         this.add(deleteExpense);
     }
 
+    // MODIFIES: allExpenses, allExpensesFromCat, allExpensesFromMonth, addExpense, deleteExpense
+    // EFFECTS: sets the bounds and fonts for the buttons
     private void menuButtonsSetUp() {
         allExpenses.setBounds(80, 160, 250, 50);
         allExpensesFromCat.setBounds(80, 250, 250, 50);
