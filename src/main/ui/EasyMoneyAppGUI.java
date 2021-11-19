@@ -66,11 +66,11 @@ public class EasyMoneyAppGUI extends JFrame {
             this.submit.setFont(new Font("Monospaced", Font.PLAIN, 12));
             this.submit.addActionListener(e -> {
                 Double dollarValue = Double.parseDouble(dollarField.getText());
-                String descriptionValue = (String) descriptionField.getText();
+                String descriptionValue = descriptionField.getText();
                 String categoryValue = (String) selectCategory.getSelectedItem();
-                String timeValue = (String) timeField.getText();
-                String monthValue = selectMonth.getSelectedItem().toString();
-                Integer dayValue = (int) selectDay.getSelectedIndex() + 1;
+                String timeValue = timeField.getText();
+                String monthValue = (String) selectMonth.getSelectedItem();
+                Integer dayValue = selectDay.getSelectedIndex() + 1;
                 Integer yearValue = Integer.parseInt(yearField.getText());
                 String dateStr = timeValue + " " + monthValue + " " + dayValue + ", " + yearValue;
                 LocalDateTime date = stringToDate(dateStr, timeValue, dayValue);

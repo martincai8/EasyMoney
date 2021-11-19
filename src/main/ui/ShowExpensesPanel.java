@@ -29,7 +29,7 @@ public class ShowExpensesPanel extends JPanel {
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         this.home = new JButton("home");
         this.home.setBounds(160, 650, 100, 50);
-        this.home.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        this.home.setFont(new Font("Monospaced", Font.PLAIN, 12));
         this.home.addActionListener(e -> cards.show(cardLayoutPanel, "home page"));
 
         loadList();

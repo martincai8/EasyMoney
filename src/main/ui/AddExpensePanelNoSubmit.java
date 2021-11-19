@@ -53,29 +53,6 @@ public class AddExpensePanelNoSubmit extends JPanel {
         setUpInputs();
         inputsSetBounds();
 
-//        this.submit = new JButton("submit");
-//        this.submit.setBounds(160, 600, 100, 50);
-//        this.submit.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Double dollarValue = Double.parseDouble(dollarField.getText());
-//                String descriptionValue = (String) descriptionField.getText();
-//                String categoryValue = (String) selectCategory.getSelectedItem();
-//                String timeValue = (String) timeField.getText();
-//                String monthValue = selectMonth.getSelectedItem().toString();
-//                Integer dayValue = (int) selectDay.getSelectedIndex() + 1;
-//                Integer yearValue = Integer.parseInt(yearField.getText());
-//                String dateStr = timeValue + " " + monthValue.toString() + " " + dayValue.toString() + ", "
-//                        +
-//                        yearValue.toString();
-//                LocalDateTime date = stringToDate(dateStr, dayValue);
-//                Expense newExpense = new Expense(dollarValue, descriptionValue, categoryValue, date);
-//                expenseList.addExpense(newExpense); //FIX
-//                System.out.println("Added expense");
-//                System.out.println(newExpense);
-//            }
-//        });
-
         this.home = new JButton("home");
         this.home.setBounds(160, 650, 100, 50);
         this.home.setFont(new Font("Monospaced", Font.PLAIN, 12));
@@ -98,7 +75,7 @@ public class AddExpensePanelNoSubmit extends JPanel {
         this.description = new JLabel("description");
         this.category = new JLabel("category");
         this.date = new JLabel("date");
-        this.time = new JLabel("time");
+        this.time = new JLabel("24H time");
         this.month = new JLabel("month");
         this.day = new JLabel("day");
         this.year = new JLabel("year");
