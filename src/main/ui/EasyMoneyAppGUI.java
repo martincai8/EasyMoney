@@ -138,7 +138,6 @@ public class EasyMoneyAppGUI extends JFrame {
                         "", JOptionPane.YES_NO_OPTION);
                 if (option == 0) {
                     loadFile();
-                    System.out.println("loaded file");
                 }
                 initOtherPanels();
                 cards.show(cardLayoutPanel, "home page");
@@ -193,7 +192,6 @@ public class EasyMoneyAppGUI extends JFrame {
             jsonWriter.open();
             jsonWriter.write(expenseList);
             jsonWriter.close();
-            System.out.println("Saved expenses to " + DIRECTORY);
         } catch (FileNotFoundException e) {
             System.out.println("There was an error saving your file.");
         }
@@ -204,7 +202,6 @@ public class EasyMoneyAppGUI extends JFrame {
     private void loadFile() {
         try {
             this.expenseList = jsonReader.read();
-            System.out.println("Loaded expenses from " + DIRECTORY);
         } catch (IOException e) {
             System.out.println("Unable to read from file");
         }
