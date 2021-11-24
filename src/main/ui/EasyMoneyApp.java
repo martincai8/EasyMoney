@@ -184,7 +184,7 @@ public class EasyMoneyApp {
 
         Expense newExpense = new Expense(amount,description,category,date);
 
-        expenseList.addExpense(newExpense);
+        expenseList.addExpense(newExpense, "add");
 
         System.out.println("Successfully added:");
         System.out.println(newExpense);

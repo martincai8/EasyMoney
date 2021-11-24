@@ -65,7 +65,7 @@ public class JsonReader {
         String dateStr = jsonObject.getString("date");
         LocalDateTime date = stringToDate(dateStr);
         Expense e = new Expense(amount, description, category, date);
-        el.addExpense(e);
+        el.addExpense(e, "load");
     }
 
     //EFFECTS: returns a LocalDateTime object parsed from a string

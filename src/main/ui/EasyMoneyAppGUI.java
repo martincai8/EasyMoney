@@ -3,6 +3,9 @@ package ui;
 import javax.swing.*;
 
 import java.awt.*;
+
+import model.Event;
+import model.EventLog;
 import model.Expense;
 import model.ExpenseList;
 import persistence.JsonReader;
@@ -44,6 +47,15 @@ public class EasyMoneyAppGUI extends JFrame {
         runApp();
     }
 
+    // MODIFIES: el
+    // EFFECTS: prints log of events
+    private void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString() + "\n");
+        }
+        el.clear();
+    }
+
     // EFFECTS: runs the EasyMoneyAppGUI
     private void runApp() {
         init();
@@ -78,7 +90,7 @@ public class EasyMoneyAppGUI extends JFrame {
                 String dateStr = timeValue + " " + monthValue + " " + dayValue + ", " + yearValue;
                 LocalDateTime date = stringToDate(dateStr, dayValue);
                 Expense newExpense = new Expense(dollarValue, descriptionValue, categoryValue, date);
-                expenseList.addExpense(newExpense);
+                expenseList.addExpense(newExpense, "add");
                 showExpensesPanel.refresh(expenseList.getAllExpenses());
                 showExpensesFromCategoryPanel.refresh(expenseList.getAllExpenses());
                 showExpensesFromMonthPanel.refresh(expenseList.getAllExpenses());
@@ -195,6 +207,7 @@ public class EasyMoneyAppGUI extends JFrame {
                     saveFile();
                 }
                 frame.dispose();
+                printLog(EventLog.getInstance());
             });
         }
 

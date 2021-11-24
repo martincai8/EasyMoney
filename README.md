@@ -25,3 +25,25 @@ want to develop an app is intuitive and useful.
 4. As a user, I want to be able to delete an entry from my list of expenses.
 5. As a user, I want to be able given the option to load an existing list of expenses when I start the program.
 6. As a user, I want to be given the option to save my list of expenses when I quit the app.
+
+##Phase 4: Task 2
+Wed Nov 24 15:41:54 PST 2021  
+Loaded expense from Cannabis store to list.
+
+Wed Nov 24 15:41:54 PST 2021  
+Loaded expense from Kinton Ramen to list.
+
+Wed Nov 24 15:41:54 PST 2021  
+Loaded expense from Uniqlo to list.
+
+Wed Nov 24 15:41:54 PST 2021  
+Loaded expense from Blue Chip to list.
+
+Wed Nov 24 15:42:35 PST 2021  
+Added expense from Apple to list.
+
+Wed Nov 24 15:42:58 PST 2021  
+Added expense from Nori from list.
+
+Wed Nov 24 15:43:06 PST 2021  
+Removed expense from Blue Chip from list.

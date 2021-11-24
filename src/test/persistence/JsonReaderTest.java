@@ -51,7 +51,7 @@ public class JsonReaderTest extends JsonTest{
             List<Expense> el = expenses.getAllExpenses();
             assertEquals(2, el.size());
             checkExpense(100.0, "Uniqlo", "Shopping",
-                    reader.stringToDate("19:10 Jan 14, 2021"), el.get(1));
+                    reader.stringToDate("19:10 Jan 14, 2021"), el.get(0));
         } catch (IOException e) {
             fail("couldn't read file");
         }

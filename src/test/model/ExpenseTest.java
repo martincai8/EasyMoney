@@ -60,9 +60,9 @@ public class ExpenseTest {
 
     @Test
     public void testToString() {
-        assertEquals("100.00     T&T Supermarket           Groceries            09:10 Oct 12, 2020",
+        assertEquals("100.00     T&T Supermarket      Groceries          09:10 Oct 12, 2020",
                 expense.toString());
-        assertEquals("25.00      Cineplex                  Movies               09:10 Oct 12, 2020",
+        assertEquals("25.00      Cineplex             Movies             09:10 Oct 12, 2020",
                 expense2.toString());
     }
 

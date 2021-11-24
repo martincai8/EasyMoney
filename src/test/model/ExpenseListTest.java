@@ -27,8 +27,8 @@ class ExpenseListTest {
 
     @Test
     public void testAddExpense() {
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
 
         assertEquals(2, expenses.length());
         assertEquals(10, expenses.getExpensesFromMonth(10).get(0).getDate().getMonthValue());
@@ -37,18 +37,18 @@ class ExpenseListTest {
 
     @Test
     public void testGetAllExpenses() {
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
-        expenses.addExpense(e3);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
+        expenses.addExpense(e3, "add");
 
         List<Expense> allExpenses  = expenses.getAllExpenses();
 
         assertEquals(3, allExpenses.size());
-        assertEquals("T&T Supermarket", allExpenses.get(0).getDescription());
-        assertEquals("Groceries", allExpenses.get(0).getCategory());
-        assertEquals(59.5, allExpenses.get(1).getAmount());
+        assertEquals("T&T Supermarket", allExpenses.get(1).getDescription());
+        assertEquals("Movies", allExpenses.get(0).getCategory());
+        assertEquals(59.5, allExpenses.get(2).getAmount());
         assertEquals(LocalDateTime.of(2020, Month.JULY, 12, 9,10),
-                allExpenses.get(2).getDate());
+                allExpenses.get(0).getDate());
     }
 
     @Test
@@ -59,9 +59,9 @@ class ExpenseListTest {
                 12, 9,10));
         e3 = new Expense(20, "Cineplex", "Movies", LocalDateTime.of(2020, Month.JULY,
                 12, 9,10));
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
-        expenses.addExpense(e3);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
+        expenses.addExpense(e3, "add");
 
         expenses.sortByDate();
         List<Expense> expensesSortedByDate  = expenses.getAllExpenses();
@@ -74,9 +74,9 @@ class ExpenseListTest {
 
     @Test
     public void testGetAllExpensesFromMonthDoesNotExist() {
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
-        expenses.addExpense(e3);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
+        expenses.addExpense(e3, "add");
 
         List<Expense> allExpensesJan  = expenses.getExpensesFromMonth(1);
         assertEquals(0, allExpensesJan.size());
@@ -84,9 +84,9 @@ class ExpenseListTest {
 
     @Test
     public void testGetAllExpensesFromMonthExists() {
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
-        expenses.addExpense(e3);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
+        expenses.addExpense(e3, "add");
 
         List<Expense> allExpensesOct  = expenses.getExpensesFromMonth(10);
         assertEquals(2, allExpensesOct.size());
@@ -96,9 +96,9 @@ class ExpenseListTest {
 
     @Test
     public void testGetAllExpensesFromCategoryDoesNotExist() {
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
-        expenses.addExpense(e3);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
+        expenses.addExpense(e3, "add");
 
         List<Expense> allExpensesRestaurant = expenses.getExpensesFromCategory("Restaurant");
         assertEquals(0, allExpensesRestaurant.size());
@@ -108,10 +108,10 @@ class ExpenseListTest {
     public void testGetAllExpensesFromCategoryExists() {
         Expense e4 = new Expense(23, "Cineplex", "Movies",
                 LocalDateTime.of(2020, Month.JANUARY, 12, 23,10));
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
-        expenses.addExpense(e3);
-        expenses.addExpense(e4);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
+        expenses.addExpense(e3, "add");
+        expenses.addExpense(e4, "add");
 
         List<Expense> allExpensesRestaurant = expenses.getExpensesFromCategory("Movies");
         assertEquals(2, allExpensesRestaurant.size());
@@ -121,24 +121,24 @@ class ExpenseListTest {
 
     @Test
     public void testRemoveExpenseExists() {
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
-        expenses.addExpense(e3);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
+        expenses.addExpense(e3, "add");
 
         assertEquals(3, expenses.length());
 
         expenses.removeExpense(e1);
 
         assertEquals(2, expenses.length());
-        assertEquals(e2, expenses.getAllExpenses().get(0));
+        assertEquals(e2, expenses.getAllExpenses().get(1));
     }
 
 
     @Test
     public void testRemoveExpenseDoesNotExist() {
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
-        expenses.addExpense(e3);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
+        expenses.addExpense(e3, "add");
 
         assertEquals(3, expenses.length());
 
@@ -146,30 +146,30 @@ class ExpenseListTest {
                 LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10)));
         assertEquals(3, expenses.length());
 
-        assertEquals(e2, expenses.getAllExpenses().get(1));
+        assertEquals(e2, expenses.getAllExpenses().get(2));
     }
 
     @Test
     public void testRemoveExpenseIndex() {
-        expenses.addExpense(e1);
-        expenses.addExpense(e2);
-        expenses.addExpense(e3);
+        expenses.addExpense(e1, "add");
+        expenses.addExpense(e2, "add");
+        expenses.addExpense(e3, "add");
 
         assertEquals(3, expenses.length());
         assertEquals(e2, expenses.removeExpense(2));
         assertEquals(2, expenses.length());
 
-        assertEquals(e1, expenses.getAllExpenses().get(0));
-        assertEquals(e3, expenses.getAllExpenses().get(1));
+        assertEquals(e1, expenses.getAllExpenses().get(1));
+        assertEquals(e3, expenses.getAllExpenses().get(0));
     }
 
     @Test
     public void testLength() {
-        expenses.addExpense(e1);
+        expenses.addExpense(e1, "add");
         assertEquals(1, expenses.length());
 
         for(int i = 1; i < 15; i++) {
-            expenses.addExpense(e1);
+            expenses.addExpense(e1, "add");
         }
 
         assertEquals(15, expenses.length());

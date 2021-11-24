@@ -23,8 +23,17 @@ public class ExpenseList implements Writable {
 
     //MODIFIES: this
     //EFFECTS: adds an expense to the list of expenses
-    public void addExpense(Expense e) {
+    public void addExpense(Expense e, String option) {
         expenses.add(e);
+        if (option.equals("load")) {
+            EventLog.getInstance().logEvent(new Event("Loaded expense from " + e.getDescription()
+                    +
+                    " to list."));
+        } else if (option.equals("add")) {
+            EventLog.getInstance().logEvent(new Event("Added expense from " + e.getDescription()
+                    +
+                    " to list."));
+        }
     }
 
     //REQUIRES: expenses isn't empty
@@ -71,6 +80,9 @@ public class ExpenseList implements Writable {
     //EFFECTS: removes the expense with the matching amount, description, category, and date from expenses
     public Expense removeExpense(Expense target) {
         expenses.remove(target);
+        EventLog.getInstance().logEvent(new Event("Removed expense from " + target.getDescription()
+                +
+                " from list."));
         return target;
     }
 
@@ -80,6 +92,9 @@ public class ExpenseList implements Writable {
     public Expense removeExpense(int position) {
         Expense target = expenses.get(position - 1);
         expenses.remove(target);
+        EventLog.getInstance().logEvent(new Event("Removed expense from " + target.getDescription()
+                +
+                " from list."));
         return target;
     }
 

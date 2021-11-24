@@ -55,11 +55,11 @@ public class JsonWriterTest extends JsonTest {
     public void testWriterNonEmptyExpenseList() {
         try {
             expenses.addExpense(new Expense(100, "T&T Supermarket", "Groceries",
-                    LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10)));
+                    LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10)), "add");
             expenses.addExpense(new Expense(59.5, "H&M", "Shopping",
-                    LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10)));
+                    LocalDateTime.of(2020, Month.OCTOBER, 12, 9,10)), "add");
             expenses.addExpense(new Expense(20, "Cineplex", "Movies",
-                    LocalDateTime.of(2020, Month.JULY, 12, 9,10)));
+                    LocalDateTime.of(2020, Month.JULY, 12, 9,10)), "add");
 
             JsonWriter writer = new JsonWriter("./data/testWriterNonEmptyExpenseList.json");
             writer.open();
@@ -70,11 +70,11 @@ public class JsonWriterTest extends JsonTest {
             expenses = reader.read();
             List<Expense> el = expenses.getAllExpenses();
             assertEquals(3, el.size());
-            assertEquals("T&T Supermarket", el.get(0).getDescription());
-            assertEquals(59.5, el.get(1).getAmount());
-            assertEquals("Movies", el.get(2).getCategory());
+            assertEquals("T&T Supermarket", el.get(1).getDescription());
+            assertEquals(59.5, el.get(2).getAmount());
+            assertEquals("Movies", el.get(0).getCategory());
             assertEquals(LocalDateTime.of(2020, Month.JULY, 12, 9,10),
-                    el.get(2).getDate());
+                    el.get(0).getDate());
         } catch (IOException e) {
             fail("exception should not have been thrown");
         }
