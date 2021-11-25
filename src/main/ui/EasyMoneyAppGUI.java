@@ -25,7 +25,6 @@ public class EasyMoneyAppGUI extends JFrame {
 
     private static final String DIRECTORY = "./data/defaultExpenseList.json";
     private ExpenseList expenseList;
-    private Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
