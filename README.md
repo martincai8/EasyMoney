@@ -47,3 +47,12 @@ Added expense from Nori from list.
 
 Wed Nov 24 15:43:06 PST 2021  
 Removed expense from Blue Chip from list.
+
+Thu Nov 25 11:15:04 PST 2021  
+Viewed all expenses
+
+Thu Nov 25 11:15:09 PST 2021  
+Viewed all expenses from Restaurants
+
+Thu Nov 25 11:15:15 PST 2021  
+Viewed all expenses from month #3

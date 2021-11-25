@@ -40,6 +40,7 @@ public class ExpenseList implements Writable {
     //EFFECTS: returns all expenses
     public List<Expense> getAllExpenses() {
         this.sortByDate();
+        EventLog.getInstance().logEvent(new Event("Viewed all expenses"));
         return expenses;
     }
 
@@ -60,6 +61,7 @@ public class ExpenseList implements Writable {
                 expensesMonth.add(e);
             }
         }
+        EventLog.getInstance().logEvent(new Event("Viewed all expenses from month #" + month));
         return expensesMonth;
     }
 
@@ -72,6 +74,7 @@ public class ExpenseList implements Writable {
                 expensesCategory.add(e);
             }
         }
+        EventLog.getInstance().logEvent(new Event("Viewed all expenses from " + category));
         return expensesCategory;
     }
 
