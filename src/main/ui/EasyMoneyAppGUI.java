@@ -71,7 +71,7 @@ public class EasyMoneyAppGUI extends JFrame {
     }
 
     // Represents the AddExpensePanel
-    class AddExpensePanel extends AddExpensePanelNoSubmit {
+    private class AddExpensePanel extends AddExpensePanelNoSubmit {
         //Constructs an AddExpensePanel
         public AddExpensePanel(int width, int height, ExpenseList expenseList2,
                                CardLayout cards, JPanel cardLayoutPanel) {
@@ -118,7 +118,7 @@ public class EasyMoneyAppGUI extends JFrame {
     }
 
     // Represents the DeleteExpensePanel
-    class DeleteExpensePanel extends ShowExpensesPanel {
+    private class DeleteExpensePanel extends ShowExpensesPanel {
         private JButton deleteButton;
 
         //Constructs a DeleteExpensePanel
@@ -143,7 +143,7 @@ public class EasyMoneyAppGUI extends JFrame {
     }
 
     //Represents a StartUpPanel
-    class StartUpPanel extends StartUpPanelNoStartButton {
+    private class StartUpPanel extends StartUpPanelNoStartButton {
         private JButton start;
         private ImageIcon saveIcon;
 
@@ -173,7 +173,7 @@ public class EasyMoneyAppGUI extends JFrame {
     }
 
     //Represents a HomePagePanel
-    class HomePagePanel extends HomePagePanelNoSaveQuit {
+    private class HomePagePanel extends HomePagePanelNoSaveQuit {
         private JButton save;
         private JButton quit;
         private ImageIcon saveIcon;
