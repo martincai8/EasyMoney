@@ -56,3 +56,10 @@ Viewed all expenses from Restaurants
 
 Thu Nov 25 11:15:15 PST 2021  
 Viewed all expenses from month #3
+
+##Phase 4: Task 3  
+- I would find a way to let external classes access and modify fields in the GUI class, which would get rid of the 3
+"extends" relationships for AddExpensePanel, HomePagePanel, and StartUpPanel
+- I would add more helper methods in some of my longer classes so the code is more readable
+- I would implement an observer design whenever I add or delete an expense instead of manually refreshing the expense
+lists every time something happened
